@@ -9,7 +9,8 @@ import {FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
-
+import {UserAuthService} from './_services/user.auth.service'
+import { UserAuthGuardService } from './_services/user.auth.guard.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     FormsModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [UserAuthService,UserAuthGuardService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

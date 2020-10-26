@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {UserAuthService} from '../../_services/user.auth.service'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userauthService:UserAuthService) { }
 
+  isAuth() {
+    return this.userauthService.isAuthenticated();
+    }
+  
   ngOnInit(): void {
   }
+
+  onLogout() {
+    alert("LogOut Called");
+    this.userauthService.logout();
+    }
+  
 
 }
