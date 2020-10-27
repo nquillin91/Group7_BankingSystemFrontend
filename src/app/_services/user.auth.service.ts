@@ -6,6 +6,7 @@ import * as firebase from 'firebase/app';
 
 import { Observable } from 'rxjs/Observable';
 
+
 //import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
@@ -22,20 +23,25 @@ export class UserAuthService {user: Observable<firebase.User>;
         .then(value => {
           console.log('Success!', value);
         })
-        .catch(err => {
+        .catch(err => { 
           console.log('Something went wrong:',err.message);
         });    
     }
   
     login(email: string, password: string) {
+       
+        alert(email);
+        alert(password);
       this.firebaseAuth
         .auth
         .signInWithEmailAndPassword(email, password)
         .then(value => {
           console.log('Nice, it worked!');
+          alert('Nice, it worked!');
         })
         .catch(err => {
           console.log('Something went wrong:',err.message);
+          alert('Something went wrong:');
         });
     }
   

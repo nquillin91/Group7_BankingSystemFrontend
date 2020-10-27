@@ -15,14 +15,14 @@
       <form class="example-form">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username">
+            <input #textbox matInput placeholder="Username" type="text" [(ngModel)]="email">
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password">
+            <input #textboxp matInput placeholder="Password" type="password" [(ngModel)]="password">
           </mat-form-field>
         </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block" routerLink="/home" routerLinkActive="active">Log in</button>
+        <button mat-stroked-button color="accent" class="btn-block" routerLinkActive="active" (click)="onSubmit(textbox.value,textboxp.value)">Log in</button>
         <button mat-stroked-button color="accent" class="btn-block" routerLink="/register" routerLinkActive="active">Register</button>
       </form>
     </mat-card>
