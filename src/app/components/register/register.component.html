@@ -1,17 +1,24 @@
-<form [formGroup]="myForm" (ngSubmit)="SignUp()">
-  <div class="form-group">
-  <label for="email">E-Mail</label>
-  <input formControlName="email" type="email" id="email" #email class="form-control">
-  <span *ngIf="!email.pristine && email.errors != null && email.errors['noEmail']">Invalid mail address</span>
-  </div>
-  <div class="form-group">
-  <label for="password">Password</label>
-  <input formControlName="password" type="password" id="password" class="form-control">
-  </div>
-  <div class="form-group">
-  <label for="confirm-password">Confirm Password</label>
-  <input formControlName="confirmPassword" type="password" id="confirm-password" #confirmPassword class="form-control">
-  <span *ngIf="!confirmPassword.pristine && confirmPassword.errors != null && confirmPassword.errors['passwordsNotMatch']">Passwords do not match</span>
-  </div>
-  <button type="submit" [disabled]="!myForm.valid" class="btn btn-primary">Sign Up</button>
-  </form>
+<mat-toolbar color="primary" class="app-header">
+  <span class="nav-tool-items">
+    <a mat-button mat-raised-button routerLink="/login" routerLinkActive="active" routerLinkActive="active">Log in</a>
+  </span>
+</mat-toolbar>
+<h1 *ngIf="userauthService.user | async">Welcome {{ (authService.user | async)?.email }}!</h1>
+
+<div *ngIf="!(userauthService.user | async)">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Username" type="text" [(ngModel)]="email">
+  </mat-form-field>
+  <!--<input type="text" [(ngModel)]="email" placeholder="email">-->
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Password" type="password" [(ngModel)]="password">
+  </mat-form-field>
+  
+  <button mat-stroked-button color="accent" class="btn-block" (click)="SignUp()" [disabled]="!email || !password" routerLinkActive="active">Register</button>
+
+</div>
+
+<!--<button (click)="logout()" *ngIf="authService.user | async">
+  Logout
+</button>-->

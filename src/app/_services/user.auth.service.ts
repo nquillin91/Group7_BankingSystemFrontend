@@ -1,58 +1,47 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
+import { Observable } from 'rxjs/Observable';
+
 //import { Observable, Subject } from 'rxjs/Rx';
-declare var firebase: any;
+
 @Injectable()
-export class UserAuthService {
-constructor(private router: Router) { }
-signupUser(user: User) {
-firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-.catch(function (error) {
-// Handle Errors here.
-//var errorCode = error.code;
-//var errorMessage = error.message;
-// ...
-console.log(error);
-});
-}
-logout() {
-firebase.auth().signOut();
-this.router.navigate(['/signin']);
-}
-signinUser(user: User) {
-firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-.catch(function (error) {
-// Handle Errors here.
-//var errorCode = error.code;
-//var errorMessage = error.message;
-console.log(error);
-// ...
-});
-}
-isAuthenticated() {
-var user = firebase.auth().currentUser;
-if (user) {
-return true;
-}
-else {
-return false;
-}
-}
-userProfile() {
-var user = firebase.auth().currentUser;
-var name, email, photoUrl,password, uid, emailVerified;
-if (user != null) {
-//name = user.displayName;
-email = user.email;
-password=user.password;
-return user;
-//photoUrl = user.photoURL;
-//emailVerified = user.emailVerified;
-//uid = user.uid;
-}
-else{
-return null;
-}
-}
+export class UserAuthService {user: Observable<firebase.User>;
+
+    constructor(private firebaseAuth: AngularFireAuth) {
+      this.user = firebaseAuth.authState;
+    }
+  
+    signup(email: string, password: string) {
+      this.firebaseAuth
+        .auth
+        .createUserWithEmailAndPassword(email, password)
+        .then(value => {
+          console.log('Success!', value);
+        })
+        .catch(err => {
+          console.log('Something went wrong:',err.message);
+        });    
+    }
+  
+    login(email: string, password: string) {
+      this.firebaseAuth
+        .auth
+        .signInWithEmailAndPassword(email, password)
+        .then(value => {
+          console.log('Nice, it worked!');
+        })
+        .catch(err => {
+          console.log('Something went wrong:',err.message);
+        });
+    }
+  
+    logout() {
+      this.firebaseAuth
+        .auth
+        .signOut();
+    }
 }

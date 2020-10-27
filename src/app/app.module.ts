@@ -10,7 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {UserAuthService} from './_services/user.auth.service'
-import { UserAuthGuardService } from './_services/user.auth.guard.service';
+//import { UserAuthGuardService } from './_services/user.auth.guard.service';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,9 +31,11 @@ import { UserAuthGuardService } from './_services/user.auth.guard.service';
     AngularMaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
-  providers: [UserAuthService,UserAuthGuardService],
+  providers: [UserAuthService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -8,14 +8,15 @@ import { UserAuthService } from '../../_services/user.auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  email: string;
+  password: string;
   myForm: FormGroup;
 error = false;
 errorMessage = '';
 
   Roles: any = ['Admin', 'Banker', 'Employee'];
 
-  constructor(private fb: FormBuilder, private userauthService: UserAuthService) { }
+  constructor(private fb: FormBuilder, public userauthService: UserAuthService) { }
 
   ngOnInit() {
     this.myForm = this.fb.group({
@@ -33,7 +34,11 @@ errorMessage = '';
   }
 
   SignUp(){
-    this.userauthService.signupUser(this.myForm.value);
+    alert("user info stored in firebase")
+   
+      this.userauthService.signup(this.email, this.password);
+      this.email = this.password = '';
+    
     
   }
   isEmail(control: FormControl): {[s: string]: boolean} {
@@ -50,7 +55,11 @@ errorMessage = '';
       return {passwordsNotMatch: true};
       }
   }
-
+  login() {
+    this.userauthService.login(this.email, this.password);
+    this.email = this.password = '';    
+    alert("login successful")
+  }
   
 
 }
