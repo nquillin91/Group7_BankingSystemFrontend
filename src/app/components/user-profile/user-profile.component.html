@@ -1,0 +1,96 @@
+<mat-toolbar color="primary" class="app-header">
+<span class="nav-tool-items">
+    <a mat-button routerLink="/login" (click)="onLogout()" routerLinkActive="active">Log out</a>
+    <a mat-button [routerLink]="'/home'"> Home </a>
+    <a mat-button [routerLink]="'/user-profile'"> User Profile </a>
+</span>
+</mat-toolbar>
+<mat-card class="box">
+    <mat-card-header>
+        <mat-card-title>Profile</mat-card-title>
+    </mat-card-header>
+    <form >
+        <mat-card-content>
+            <img [src]="profileImage" height="200"> <br/>
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field >
+                    <input #textbox matInput name="username" placeholder="Username" type="text" disabled [(ngModel)]="userProfile.username">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field >
+                    <input #textboxp matInput name="emailAddress" placeholder="Email Address" required type="text" [(ngModel)]="userProfile.emailAddress">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field >
+                    <input #textboxp matInput name="existingPassword" placeholder="Existing Password" required type="password" [(ngModel)]="existingPassword">
+                </mat-form-field>
+
+                <mat-form-field >
+                    <input #textboxp matInput name="newPassword" placeholder="New Password" required type="password" [(ngModel)]="newPassword">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field >
+                    <input #textboxp matInput name="firstName" placeholder="First Name" required type="text" [(ngModel)]="userProfile.firstName">
+                </mat-form-field>
+
+                <mat-form-field >
+                    <input #textboxp matInput name="middleName" placeholder="Middle Name" type="text" [(ngModel)]="userProfile.middleName">
+                </mat-form-field>
+
+                <mat-form-field >
+                    <input #textboxp matInput name="lastName" placeholder="Last Name" required type="text" [(ngModel)]="userProfile.lastName">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field appearance="fill">
+                    <mat-label>Birthdate</mat-label>
+                    <input matInput name="birthDate" [matDatepicker]="birthDatePicker" [formControl]="birthDate" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #birthDatePicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field >
+                    <input #textboxp matInput name="phoneNumber" placeholder="Phone Number" required type="text" [(ngModel)]="userProfile.phoneNumber">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field >
+                    <input #textboxp matInput name="providedIncome" placeholder="Provided Income" required type="text" [(ngModel)]="userProfile.providedIncome">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field >
+                    <input #textboxp matInput name="addressLine1" placeholder="Address Line 1" required type="text" [(ngModel)]="userProfile.addressLine1">
+                </mat-form-field>
+
+                <mat-form-field >
+                    <input #textboxp matInput name="addressLine2" placeholder="Address Line 2" required type="text" [(ngModel)]="userProfile.addressLine2">
+                </mat-form-field>
+
+                <mat-form-field >
+                    <input #textboxp matInput name="city" placeholder="City" type="text" required [(ngModel)]="userProfile.city">
+                </mat-form-field>
+
+                <mat-form-field >
+                    <input #textboxp matInput name="state" placeholder="State" type="text" required [(ngModel)]="userProfile.state">
+                </mat-form-field>
+
+                <mat-form-field >
+                    <input #textboxp matInput name="zipCode" placeholder="Zip Code" type="text" required [(ngModel)]="userProfile.zipCode">
+                </mat-form-field>
+            </div>
+
+        </mat-card-content>
+    </form>
+</mat-card>

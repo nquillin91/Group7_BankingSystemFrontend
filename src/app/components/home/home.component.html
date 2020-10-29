@@ -1,8 +1,9 @@
 <mat-toolbar color="primary" class="app-header">
-    <span class="nav-tool-items">
-      <a mat-button routerLink="/login" (click)="onLogout()" routerLinkActive="active">Log out</a>
-      <!--<a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>-->
-    </span>
-  </mat-toolbar>
+	<span class="nav-tool-items">
+	  <a mat-button routerLink="/login" (click)="onLogout()" routerLinkActive="active">Log out</a>
+	  <a mat-button [routerLink]="'/user-profile'"> User Profile </a>
+	  <!--<a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>-->
+	</span>
+</mat-toolbar>
 <p>Landing Page once logged in</p>
 <p>We have to include auth guard to prevent unauthenticated sers from accessing without logging in</p>
