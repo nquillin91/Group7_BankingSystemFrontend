@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { TransferFundsComponent } from './components/transfer-funds/transfer-funds.component';
 import {UserProfileComponent} from '../app/components/user-profile/user-profile.component'
 import {FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +26,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    TransferFundsComponent
   ],
   imports: [FormsModule, ReactiveFormsModule,
     BrowserModule,
