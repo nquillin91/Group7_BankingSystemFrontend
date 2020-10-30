@@ -26,6 +26,7 @@ export class LoanAppComponent implements OnInit {
 
   onSubmit(){
     const formValue = this.loanAppForm.value;
+    console.log("Form Submitted!");
   }
 
 }

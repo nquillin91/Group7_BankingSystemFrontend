@@ -10,7 +10,7 @@
         <mat-card-header>
             <mat-card-title>Apply for your Personal Loan!</mat-card-title>
         </mat-card-header>
-        <form >
+        <form [formGroup]="loanAppForm">
             <mat-card-content>
     
                 <div fxLayout="row" fxLayoutAlign="none">
@@ -90,7 +90,7 @@
       </p>
 
             </mat-card-content>
-        </form>
+            
 <br>
 <br>
 <p>By typing your name below, you are certifying that the above information is accurate and correct.</p>
@@ -99,6 +99,9 @@
                 <input #textboxp matInput name="emailAddress" placeholder="E-Signature" required type="text">
             </mat-form-field>
         </div>
+
+        <button mat-stroked-button color="accent" [formGroup]="loanAppForm"(click)="onSubmit()" class="btn-block">Submit</button>
+    </form>
     </mat-card>
 
     
