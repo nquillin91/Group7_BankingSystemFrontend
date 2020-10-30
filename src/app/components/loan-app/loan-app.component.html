@@ -8,24 +8,24 @@
     </mat-toolbar>
     <mat-card class="box">
         <mat-card-header>
-            <mat-card-title>Apply for your Personal Loan!</mat-card-title>
+            <mat-card-title>Get your loan today!</mat-card-title>
         </mat-card-header>
-        <form [formGroup]="loanAppForm">
+        <form class="center-align" [formGroup]="loanAppForm">
             <mat-card-content>
     
                 <div fxLayout="row" fxLayoutAlign="none">
                     <mat-form-field >
-                        <input #textboxp matInput name="emailAddress" placeholder="Employer Name" required type="text">
+                        <input #textboxp matInput name="empName" placeholder="Employer Name" required type="text">
                     </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="none">
                     <mat-form-field >
-                        <input #textboxp matInput name="emailAddress" placeholder="Employer Address" required type="text">
+                        <input #textboxp matInput name="empAddr" placeholder="Employer Address" required type="text">
                     </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="none">
                     <mat-form-field >
-                        <input #textboxp matInput name="emailAddress" placeholder="Employer Phone" required type="text">
+                        <input #textboxp matInput name="empPhone" placeholder="Employer Phone" required type="text">
                     </mat-form-field>
                 </div>
                 <br>
@@ -33,25 +33,25 @@
                 <p>Please select which type of loan you are interested in:</p>
                     <p>
                         <label>
-                          <input name="group1" type="radio" checked />
+                          <input name="autoLoan" type="radio" checked />
                           <span>Auto Loan</span>
                         </label>
                       </p>
                       <p>
                         <label>
-                          <input name="group1" type="radio" />
+                          <input name="mortLoan" type="radio" />
                           <span>Mortgage Loan</span>
                         </label>
                       </p>
                       <p>
                         <label>
-                          <input class="with-gap" name="group1" type="radio"  />
+                          <input name="personalLoan" type="radio"  />
                           <span>Personal Loan</span>
                         </label>
                       </p>
                       <p>
                         <label>
-                          <input name="group1" type="radio" disabled="disabled" />
+                          <input name="studentLoan" type="radio"/>
                           <span>Student Loan</span>
                         </label>
                       </p>
@@ -60,18 +60,18 @@
 
         <div fxLayout="row" fxLayoutAlign="none">
                 <mat-form-field >
-                    <input #textboxp matInput name="emailAddress" placeholder="Desired Loan Amount $" required type="text">
+                    <input #textboxp matInput name="loanAmount" placeholder="Desired Loan Amount $" required type="text">
                  </mat-form-field>
             </div>
                 
                 <div fxLayout="row" fxLayoutAlign="none">
                     <mat-form-field >
-                        <input #textboxp matInput name="emailAddress" placeholder="FICO Score" required type="text">
+                        <input #textboxp matInput name="fico" placeholder="FICO Score" required type="text">
                     </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="none">
                     <mat-form-field >
-                        <input #textboxp matInput name="emailAddress" placeholder="Total Outstanding Debt" required type="text">
+                        <input #textboxp matInput name="totalDebt" placeholder="Total Outstanding Debt" required type="text">
                     </mat-form-field>
                 </div>
 
@@ -96,7 +96,7 @@
 <p>By typing your name below, you are certifying that the above information is accurate and correct.</p>
         <div fxLayout="row" fxLayoutAlign="none">
             <mat-form-field >
-                <input #textboxp matInput name="emailAddress" placeholder="E-Signature" required type="text">
+                <input #textboxp matInput name="esig" placeholder="E-Signature" required type="text">
             </mat-form-field>
         </div>
 
