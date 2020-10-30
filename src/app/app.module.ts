@@ -9,14 +9,16 @@ import {FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import {UserAuthService} from './_services/user.auth.service'
+import {UserAuthService} from './_services/user.auth.service';
 import { UserAuthGuardService } from './_services/user.auth.guard.service';
+import { LoanAppComponent } from './components/loan-app/loan-app.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    LoanAppComponent
   ],
   imports: [FormsModule, ReactiveFormsModule,
     BrowserModule,
