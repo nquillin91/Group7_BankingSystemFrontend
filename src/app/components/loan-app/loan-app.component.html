@@ -1,3 +1,4 @@
+
 <mat-toolbar color="primary" class="app-header">
     <span class="nav-tool-items">
      <!-- <a mat-button routerLink="/login" (click)="onLogout()" routerLinkActive="active">Log out</a> -->
@@ -56,39 +57,49 @@
                       </p>
 
                       <br>
-    
-                      <div fxLayout="row" fxLayoutAlign="none">
-                         <div id="test-slider"></div>
-                      </div>
 
+        <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field >
+                    <input #textboxp matInput name="emailAddress" placeholder="Desired Loan Amount $" required type="text">
+                 </mat-form-field>
+            </div>
+                
                 <div fxLayout="row" fxLayoutAlign="none">
                     <mat-form-field >
-                        <input #textboxp matInput name="emailAddress" placeholder="Email Address" required type="text">
+                        <input #textboxp matInput name="emailAddress" placeholder="FICO Score" required type="text">
                     </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="none">
                     <mat-form-field >
-                        <input #textboxp matInput name="emailAddress" placeholder="Email Address" required type="text">
+                        <input #textboxp matInput name="emailAddress" placeholder="Total Outstanding Debt" required type="text">
                     </mat-form-field>
                 </div>
+
+    <br>
     
+    <p>Select which Rates you are interested in:</p>
+    <p>
+        <label>
+          <input type="checkbox" />
+          <span>Fixed</span>
+        </label>
+        <label>
+          <input type="checkbox" checked="checked" />
+          <span>Adjustable</span>
+        </label>
+      </p>
+
             </mat-card-content>
         </form>
+<br>
+<br>
+<p>By typing your name below, you are certifying that the above information is accurate and correct.</p>
+        <div fxLayout="row" fxLayoutAlign="none">
+            <mat-form-field >
+                <input #textboxp matInput name="emailAddress" placeholder="E-Signature" required type="text">
+            </mat-form-field>
+        </div>
     </mat-card>
 
-    <script>
-        var slider = document.getElementById('test-slider');
-  noUiSlider.create(slider, {
-   start: [20, 80],
-   connect: true,
-   step: 1,
-   orientation: 'horizontal', // 'horizontal' or 'vertical'
-   range: {
-     'min': 0,
-     'max': 100
-   },
-   format: wNumb({
-     decimals: 0
-   })
-  });
-    </script>
+    
+

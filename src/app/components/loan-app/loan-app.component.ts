@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl} from '@angular/forms';
 
+
 @Component({
   selector: 'app-loan-application',
   templateUrl: './loan-app.component.html',
