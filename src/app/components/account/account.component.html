@@ -1,3 +1,12 @@
+<!-- Toolbar -->
+<mat-toolbar color="primary" class="app-header">
+    <span class="nav-tool-items">
+        <a mat-button mat-raised-button routerLink="/home" routerLinkActive="active">Home</a>
+        &nbsp;
+        <a mat-button mat-raised-button routerLink="/transferFunds" routerLinkActive="active">Transfer Funds</a>
+    </span>
+</mat-toolbar>
+
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- AccountNumber Column -->
     <ng-container matColumnDef="accountnumber">

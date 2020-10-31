@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 export interface BankAccount {
   accountnumber: number;
   accounttype: string;
