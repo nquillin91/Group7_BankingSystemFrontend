@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { FormGroup, FormControl} from '@angular/forms';
-
+import {TransferFunds} from '../../models/TransferFunds';
 @Component({
   selector: 'app-transfer-funds',
   templateUrl: './transfer-funds.component.html',
@@ -10,6 +10,7 @@ import { FormGroup, FormControl} from '@angular/forms';
 export class TransferFundsComponent implements OnInit {
 
   AccountTypes: any = ['Savings', 'Checking'];
+  transferFunds: TransferFunds;
 
   // constructor(public dialog: MatDialog) {}
 
@@ -31,13 +32,15 @@ export class TransferFundsComponent implements OnInit {
     transferAmount :  new FormControl(),
     date : new FormControl(),
     remarks : new FormControl(),
+
    });
 
   ngOnInit(): void {
   }
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    const formValue = this.transferFundsForms.value;
+    this.transferFunds=this.transferFundsForms.value
+
   }
 }
 
