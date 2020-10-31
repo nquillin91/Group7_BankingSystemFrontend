@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationServiceV2 } from '../../_services/authentication.service_v2';
+import { AuthenticationService } from '../../_services/authentication.service';
 import { UserProfile } from '../../models/userprofile';
 import { UserService } from '../../_services/user.service';
 
@@ -19,7 +19,9 @@ export class UserProfileComponent implements OnInit {
     newPassword: string;
 
 
-    constructor(private authenticationService: AuthenticationServiceV2, private userService: UserService, private router: Router) {
+    constructor(private authenticationService: AuthenticationService, private userService: UserService, private router: Router) {
+        this.userProfile = new UserProfile();
+        this.birthDate = new FormControl(new Date(this.userProfile.birthDate));
     }
 
     ngOnInit() {
@@ -31,7 +33,7 @@ export class UserProfileComponent implements OnInit {
                     this.userProfile = new UserProfile();
                 }
 
-                this.birthDate = new FormControl(new Date(this.userProfile.birthDate));
+                this.birthDate = new FormControl(new Date(this.userProfile.birthDate.replace(/-/g, '\/').replace(/T.+/, '')));
             },
             error => console.log(error));
         } catch {
@@ -40,13 +42,6 @@ export class UserProfileComponent implements OnInit {
     }
 
     onLogout() {
-        this.authenticationService.logout().subscribe(
-          res => {
-            this.router.navigateByUrl('/login');
-          },
-          error => {
-            //this.internalServerError = true;
-          }
-        );
+        this.authenticationService.logout();
     }
 }

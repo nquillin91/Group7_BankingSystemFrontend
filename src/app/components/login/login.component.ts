@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { AuthenticationServiceV2 } from '../../_services/authentication.service_v2';
+import { AuthenticationService } from '../../_services/authentication.service';
 import { User } from '../../models/user';
 
 @Component({
@@ -14,13 +14,13 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
 
   constructor(
-    public authenticationService: AuthenticationServiceV2,
+    public authenticationService: AuthenticationService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router  
   ) {
     this.loginForm = this.formBuilder.group({
-      'username': ['', [Validators.required, this.isEmail]],
+      'username': ['', [Validators.required]],
       'password': ['', [Validators.required]]
     });
   }
@@ -28,18 +28,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {  
   }
 
-  isEmail(control: FormControl): {[s: string]: boolean} {
-    if (!control.value.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
-      return {
-        noEmail: true
-      };
-    }
-  }
-
   login():void {
     this.authenticationService.login(this.loginForm.value).subscribe(
       res => {
-        this.authenticationService.setLoggedUser(res.responseObject);
         this.router.navigateByUrl('/home');
       },
       error => {

@@ -27,18 +27,18 @@ export class UserProfile {
         state: string = 'IL',
         zipCode: string = '60602') {
         
-        this.username = username;
-        this.emailAddress = emailAddress;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.phoneNumber = phoneNumber;
-        this.providedIncome = providedIncome;
-        this.addressLine1 = addressLine1;
-        this.addressLine2 = addressLine2;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
+        // this.username = username;
+        // this.emailAddress = emailAddress;
+        // this.firstName = firstName;
+        // this.middleName = middleName;
+        // this.lastName = lastName;
+        // this.birthDate = birthDate;
+        // this.phoneNumber = phoneNumber;
+        // this.providedIncome = providedIncome;
+        // this.addressLine1 = addressLine1;
+        // this.addressLine2 = addressLine2;
+        // this.city = city;
+        // this.state = state;
+        // this.zipCode = zipCode;
     }
 }

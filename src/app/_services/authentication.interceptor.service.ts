@@ -7,11 +7,14 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     
     intercept(request:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>> {
      
-       const clonedRequest =
-            request.clone(
-                { withCredentials: true }
-            );
-        
-        return next.handle(clonedRequest);
+       if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
+       	request = request.clone({
+       		setHeaders: {
+       			Authorization: sessionStorage.getItem('token')
+       		}
+       	})
+       }
+
+       return next.handle(request);
     }
 }
