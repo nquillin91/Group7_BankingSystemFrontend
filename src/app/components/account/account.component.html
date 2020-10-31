@@ -1,0 +1,22 @@
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- AccountNumber Column -->
+    <ng-container matColumnDef="accountnumber">
+        <mat-header-cell *matHeaderCellDef> Account No. </mat-header-cell>
+        <mat-cell *matCellDef="let account"> {{account.accountnumber}} </mat-cell>
+    </ng-container>
+
+    <!-- AccountType Column -->
+    <ng-container matColumnDef="accounttype">
+        <mat-header-cell *matHeaderCellDef> Account Type </mat-header-cell>
+        <mat-cell *matCellDef="let account"> {{account.accounttype}} </mat-cell>
+    </ng-container>
+
+    <!-- Balance Column -->
+    <ng-container matColumnDef="balance">
+        <mat-header-cell *matHeaderCellDef> Balance </mat-header-cell>
+        <mat-cell *matCellDef="let account"> {{account.balance}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
