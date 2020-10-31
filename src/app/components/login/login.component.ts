@@ -27,7 +27,8 @@ errorMessage = '';
     private router: Router  
   ) { }
 
-  ngOnInit(): void {  
+  ngOnInit(): void { 
+     
   }
   
   async onSubmit(value: string,value1: string) {
