@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { UserAuthService } from '../../_services/user.auth.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthenticationServiceV2 } from '../../_services/authentication.service_v2';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -10,45 +10,42 @@ import { UserAuthService } from '../../_services/user.auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  myForm: FormGroup;
-error = false;
-errorMessage = '';
-  form: FormGroup;
-  public loginInvalid: boolean;
-  private formSubmitAttempt: boolean;
-  private returnUrl: string;
-  email: string;
-  password: string;
+  user:User;
+  loginForm:FormGroup;
 
   constructor(
-    public userauthService: UserAuthService,
-    private fb: FormBuilder,
+    public authenticationService: AuthenticationServiceV2,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router  
-  ) { }
+  ) {
+    this.loginForm = this.formBuilder.group({
+      'username': ['', [Validators.required, this.isEmail]],
+      'password': ['', [Validators.required]]
+    });
+  }
 
   ngOnInit(): void {  
-  }
-  
-  async onSubmit(value: string,value1: string) {
-    // alert(value);
-    // alert(value1);
-    this.loginInvalid = false;
-    this.formSubmitAttempt = false;
-    //if (this.form.valid) {
-      try {
-        this.userauthService.login(value, value1);
-      } catch (err) {
-        this.loginInvalid = true;
-        alert("invalid login")
-      }
-    
   }
 
   isEmail(control: FormControl): {[s: string]: boolean} {
     if (!control.value.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
-    return {noEmail: true};
+      return {
+        noEmail: true
+      };
     }
-    }
+  }
+
+  login():void {
+    this.authenticationService.login(this.loginForm.value).subscribe(
+      res => {
+        this.authenticationService.setLoggedUser(res.responseObject);
+        this.router.navigateByUrl('/home');
+      },
+      error => {
+        //this.internalServerError = true;
+      }
+    );
+  }
  
 }

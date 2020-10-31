@@ -1,0 +1,7 @@
+{
+    "/*": {
+        "target": "https://group7-banking-system-backend.herokuapp.com/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

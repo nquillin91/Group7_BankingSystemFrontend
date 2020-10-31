@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {Router} from '@angular/router';
-import {UserAuthService} from '../../_services/user.auth.service'
-import {UserProfile} from '../../models/userprofile';
-//import {UserProfileService} from '../../_services/userprofile.service';
+import { Router } from '@angular/router';
+import { AuthenticationServiceV2 } from '../../_services/authentication.service_v2';
+import { UserProfile } from '../../models/userprofile';
+import { UserService } from '../../_services/user.service';
 
 @Component({
     selector: 'app-userprofile',
@@ -19,17 +19,34 @@ export class UserProfileComponent implements OnInit {
     newPassword: string;
 
 
-    constructor(private userauthService: UserAuthService, private router: Router) {
+    constructor(private authenticationService: AuthenticationServiceV2, private userService: UserService, private router: Router) {
     }
 
     ngOnInit() {
-        //this.userProfile = this.userProfileService.getSavedProfile();
-        this.userProfile = new UserProfile();
-        this.birthDate = new FormControl(new Date(this.userProfile.birthDate));
+        try {
+            this.userService.getUserProfile().subscribe((data: UserProfile) => {
+                if (data) {
+                    this.userProfile = data;
+                } else {
+                    this.userProfile = new UserProfile();
+                }
+
+                this.birthDate = new FormControl(new Date(this.userProfile.birthDate));
+            },
+            error => console.log(error));
+        } catch {
+
+        }
     }
 
     onLogout() {
-        alert("LogOut Called");
-        this.userauthService.logout();
+        this.authenticationService.logout().subscribe(
+          res => {
+            this.router.navigateByUrl('/login');
+          },
+          error => {
+            //this.internalServerError = true;
+          }
+        );
     }
 }
