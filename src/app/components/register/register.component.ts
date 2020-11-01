@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
 import { AuthenticationService } from '../../_services/authentication.service';
 import { UserProfile } from '../../models/userprofile';
+import {RegistrationForm} from '../../models/registration-form'
 import { UserService } from '../../_services/user.service';
 import { Router } from '@angular/router';
 import { observable } from 'rxjs';
@@ -18,15 +19,23 @@ export class RegisterComponent implements OnInit {
   error = false;
   errorMessage = '';
   userProfile: UserProfile;
+  registerForm: RegistrationForm;
     birthDate: FormControl;
     existingPassword: string;
     newPassword: string;
+    RegtempForm:FormGroup;
 
   Roles: any = ['Admin', 'Banker', 'Employee'];
 
   constructor(private fb: FormBuilder, public authenticationService: AuthenticationService, private userService: UserService, private router: Router) {
     this.userProfile = new UserProfile();
+    this.registerForm = new RegistrationForm();
     this.birthDate = new FormControl(new Date(this.userProfile.birthDate));
+
+    this.RegtempForm = this.fb.group({
+      'username': [''],
+      'password': ['']
+    });
 }
 
   // ngOnInit() {
@@ -44,39 +53,40 @@ export class RegisterComponent implements OnInit {
   // }
 
   ngOnInit() {
-
-    var jsonval={
-      "username" : "testuser",
-      "password" : "testPass",
-      "firstName" : "Nicholas",
-      "middleName" : "Ryan",
-      "lastName" : "Quillin",
-        "birthDate" : "02/05/1995",
-        "providedIncome" : 78000,
-      "phoneNumber" : "708-525-1444",
-      "emailAddress" : "nquillin91@gmail.com",
-      "ssn" : "123-12-1234",
-      "addressLine1" : "123 Test Avenue",
-      "addressLine2" : "1",
-      "city" : "Chicago",
-      "state" : "IL",
-      "zipcode" : "60602"
-    };
-
-    this.SignUp(jsonval);
 }
 
-  SignUp(val){
+  SignUp(un,p,f,m,l,ea,ph,ssn,a1,a2,c,s,z){
+    
+    //alert(this.RegtempForm.value['username']);
+    var jsonval={
+      "username" : un,
+      "password" : p,
+      "firstName" : f,
+      "middleName" : m,
+      "lastName" : l,
+        "birthDate" : "02/05/1995",
+        "providedIncome" : 78000,
+      "phoneNumber" : ph,
+      "emailAddress" : ea,
+      "ssn" : ssn,
+      "addressLine1" : a1,
+      "addressLine2" : a2,
+      "city" : c,
+      "state" : s,
+      "zipcode" : z
+      
+    };
     console.log("Test")
-    alert("user info stored in firebase");
-    this.authenticationService.signup(val).subscribe(
-      res => {
-        this.router.navigateByUrl('/login');
-      },
-      error => {
-        alert("Error on creation on user")
-      }
-    );
+    
+     this.authenticationService.signup(jsonval).subscribe(
+       res => {
+        alert("Account created Successfully for User "+un+", Please Login");
+         this.router.navigateByUrl('/login');
+       },
+       error => {
+         alert("Error on creation on user")
+       }
+     );
     //this.authenticationService.signup(RegistrationForm);
     //this.email = this.password = '';
   }

@@ -64,6 +64,7 @@ export class AuthenticationService {
     }
 
     signup(registrationForm : RegistrationForm):Observable<any> {
+        
         return this.http.post(this.endpoint + "/sign-up", registrationForm)
             .pipe(
                 map(res => {
