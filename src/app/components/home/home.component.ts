@@ -7,6 +7,7 @@ import { AuthenticationService } from '../../_services/authentication.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  username: String;
 
   constructor(private authenticationService:AuthenticationService) { }
 
@@ -14,6 +15,9 @@ export class HomeComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    if (this.authenticationService.isUserLoggedIn()) {
+      this.username = this.authenticationService.getLoggedInUser();
+    }
   }
 
   onLogout() {
