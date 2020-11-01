@@ -1,3 +1,20 @@
 
+<mat-toolbar color="primary" class="app-header">
+	<span class="nav-tool-items">
+	  <a mat-button mat-button mat-raised-button routerLink="/login" (click)="onLogout()" routerLinkActive="active">Log out</a>
+	  &nbsp;
+	  <a mat-button mat-button mat-raised-button [routerLink]="'/home'"> Home </a>
+	  &nbsp;
+	  <a mat-button mat-button mat-raised-button [routerLink]="'/account'"> Account</a>
+	  &nbsp;
+	  
+	  <a mat-button mat-button mat-raised-button [routerLink]="'/user-profile'"> User Profile </a>
+	  &nbsp;
+	  <a mat-button mat-button mat-raised-button [routerLink]="'/transferFunds'"> Transfer Funds </a>
+	  &nbsp;
+	  <a mat-button mat-button mat-raised-button [routerLink]="'/loan'" routerLinkActive="active"> Apply for Loan </a>
+	  <!--<a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>-->
+	</span>
+</mat-toolbar>
 
 <router-outlet></router-outlet>

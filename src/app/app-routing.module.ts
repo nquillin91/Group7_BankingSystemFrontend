@@ -8,7 +8,7 @@ import {RegisterComponent} from '../app/components/register/register.component'
 import {LoanAppComponent} from '../app/components/loan-app/loan-app.component'
 import {TransferFundsComponent} from '../app/components/transfer-funds/transfer-funds.component'
 import {UserProfileComponent} from '../app/components/user-profile/user-profile.component'
-
+import {AccountComponent} from '../app/components/account/account.component'
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -17,6 +17,7 @@ const routes: Routes = [
   {path: 'loan', component: LoanAppComponent},
   {path:'transferFunds',component:TransferFundsComponent},
   {path:'user-profile',component:UserProfileComponent},
+  {path:'account',component:AccountComponent},
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
