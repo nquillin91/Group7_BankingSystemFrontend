@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthenticationService } from '../../_services/authentication.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -10,32 +10,34 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
-  public loginInvalid: boolean;
-  private formSubmitAttempt: boolean;
-  private returnUrl: string;
+  user:User;
+  loginForm:FormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    public authenticationService: AuthenticationService,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router  
-  ) { }
+  ) {
+    this.loginForm = this.formBuilder.group({
+      'username': ['', [Validators.required]],
+      'password': ['', [Validators.required]]
+    });
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+     
   }
-  
-  async onSubmit() {
-    this.loginInvalid = false;
-    this.formSubmitAttempt = false;
-    if (this.form.valid) {
-      try {
-        const username = this.form.get('username').value;
-        const password = this.form.get('password').value;
-      } catch (err) {
-        this.loginInvalid = true;
+
+  login():void {
+    this.authenticationService.login(this.loginForm.value).subscribe(
+      res => {
+        this.router.navigateByUrl('/home');
+      },
+      error => {
+        alert("Username password combination does not exsist")
       }
-    } else {
-      this.formSubmitAttempt = true;
-    }
+    );
   }
+ 
 }

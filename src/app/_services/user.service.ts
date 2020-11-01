@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from '../models/user';
+import { UserProfile } from '../models/userprofile';
+import { environment } from  '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+  endpoint = environment.baseUrl;
+  
     constructor(private http: HttpClient) { }
 
-    getAll() {
+  getAll() {
       return this.http.get<User[]>(`/users`);
   }
 
@@ -15,12 +19,13 @@ export class UserService {
       return this.http.get(`/users/` + id);
   }
 
-  register(user: User) {
-      return this.http.post(`/users/register`, user);
+  getUserProfile() {
+    // update to /users/user/profile
+    return this.http.get<UserProfile>(this.endpoint + '/users/profile');
   }
 
   update(user: User) {
-      return this.http.put(`/users/` + user.id, user);
+      return this.http.put(`/users/user`, user);
   }
 
   delete(id: number) {

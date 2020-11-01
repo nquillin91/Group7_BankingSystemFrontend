@@ -27,10 +27,23 @@
     "@angular/platform-browser": "~10.0.9",
     "@angular/platform-browser-dynamic": "~10.0.9",
     "@angular/router": "~10.0.9",
+    "@fortawesome/angular-fontawesome": "^0.3.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-regular-svg-icons": "^5.9.0",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "angularfire2": "^5.4.2",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "firebase": "^7.22.0",
     "nouislider": "^14.6.2",
+=======
+    "firebase": "^7.24.0",
+    "ngx-cookie-service": "^10.1.1",
+    "ngx-webstorage": "^6.0.0",
+    "ngx-webstorage-service": "^4.1.0",
+>>>>>>> 08ef96c6f0ac020ccaefcaa080cc8b0680f0db0a
     "path": "^0.12.7",
+    "promise-polyfill": "8.2.0",
     "rxjs": "~6.5.5",
     "rxjs-compat": "^6.6.3",
     "tslib": "^2.0.0",
