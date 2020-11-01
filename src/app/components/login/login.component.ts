@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/home');
       },
       error => {
-        //this.internalServerError = true;
+        alert("Username password combination does not exsist")
       }
     );
   }
