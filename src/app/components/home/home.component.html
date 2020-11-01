@@ -1,7 +1,8 @@
 <mat-toolbar color="primary" class="app-header">
     <span class="nav-tool-items">
       <a mat-button routerLink="/login" (click)="onLogout()" routerLinkActive="active">Log out</a>
-      <!--<a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>-->
+      <a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>
+      <a mat-button [routerLink]="'/loan'"> Apply for Loan </a>
     </span>
   </mat-toolbar>
 <p>Landing Page once logged in</p>
