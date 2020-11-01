@@ -6,6 +6,6 @@
 	  <!--<a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>-->
 	</span>
 </mat-toolbar>
-<!-- <h1 *ngIf="authenticationService.isUserLoggedIn()">Welcome {{ authenticationService.getLoggedInUser()? }}!</h1> -->
+<h1 *ngIf="username">Welcome {{ username }}!</h1>
 <p>Landing Page once logged in</p>
 <p>We have to include auth guard to prevent unauthenticated sers from accessing without logging in</p>
