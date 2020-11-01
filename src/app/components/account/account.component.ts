@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 
-export interface BankAccount {
-  accountnumber: number;
-  accounttype: string;
-  balance: number;
-}
-
-const ACCOUNT_DATA: BankAccount[] = [
-  { accountnumber: 1, accounttype: 'Checking', balance: 500 },
-  { accountnumber: 2, accounttype: 'Savings', balance: 500 },
-];
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
+
 export class AccountComponent {
+  dataSource: MatTableDataSource<Account> = new MatTableDataSource<Account>()
+
+  get AccountDataSource(): MatTableDataSource<Account> {
+    return this.dataSource;
+  }
+
   displayedColumns: string[] = ['accountnumber', 'accounttype', 'balance'];
-  dataSource = ACCOUNT_DATA;
 
 }
