@@ -1,24 +1,85 @@
+<!-- Toolbar -->
 <mat-toolbar color="primary" class="app-header">
-  <span class="nav-tool-items">
-    <a mat-button mat-raised-button routerLink="/login" routerLinkActive="active" routerLinkActive="active">Log in</a>
-  </span>
-</mat-toolbar>
-<h1 *ngIf="userauthService.user | async">Welcome {{ (authService.user | async)?.email }}!</h1>
-
-<div *ngIf="!(userauthService.user | async)">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Username" type="text" [(ngModel)]="email">
-  </mat-form-field>
-  <!--<input type="text" [(ngModel)]="email" placeholder="email">-->
-
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Password" type="password" [(ngModel)]="password">
-  </mat-form-field>
+    <span class="nav-tool-items">
+      <a mat-button routerLink="/login" routerLinkActive="active" layout-align="end end">Log in</a>
+      
+    
+    </span>
+  </mat-toolbar>
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <form [formGroup]="registerForm" 
+          class="form"
+          fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center">
+      <mat-card class="card">
+        <mat-card-header class="card-header" fxLayout.gt-xs="row" fxLayout.xs="column">
+          <mat-card-title class="card-title">
+            <div mat-card-avatar><fa-icon class="card-title-icon" [icon]="['fas', 'sign-in-alt']"></fa-icon></div>
+            <span>Sign-UP</span>
+          </mat-card-title>
+        </mat-card-header>
   
-  <button mat-stroked-button color="accent" class="btn-block" (click)="SignUp()" [disabled]="!email || !password" routerLinkActive="active">Register</button>
+        <mat-card-content>
+          <mat-form-field class="item">
+            <input #username matInput placeholder="Username" formControlName="username" required>
+          
+           
+          </mat-form-field>
+  
+          <mat-form-field class="item">
+            <input #password type="password" matInput placeholder="Password" formControlName="password" required>
+           
+          </mat-form-field>
 
-</div>
-
-<!--<button (click)="logout()" *ngIf="authService.user | async">
-  Logout
-</button>-->
+          <mat-form-field class="item">
+            <input type="password" matInput placeholder="Confirm Password" formControlName="password" required>
+           
+          </mat-form-field>
+          <div>
+            <mat-form-field class="item">
+                <input #fname matInput placeholder="FirstName" formControlName="username" required>
+              </mat-form-field>
+              <mat-form-field class="item">
+                <input #mname matInput placeholder="MiddleName" formControlName="username" required>
+              </mat-form-field>
+              <mat-form-field class="item">
+                <input #lname matInput placeholder="LastName" formControlName="username" required>
+              </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="item">
+                <input #eaddress matInput placeholder="Email Address" formControlName="username" required>
+              </mat-form-field>
+              <mat-form-field class="item">
+                <input #phonenumber matInput placeholder="Phone Number" formControlName="username" required>
+              </mat-form-field>
+              <mat-form-field class="item">
+                <input #ssn matInput placeholder="SSN" formControlName="username" required>
+              </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="item">
+                <input #aline1 matInput placeholder="AddressLine1" formControlName="username" required>
+              </mat-form-field>
+              <mat-form-field class="item">
+                <input #aline2 matInput placeholder="AddressLine2" formControlName="username" required>
+              </mat-form-field>
+              <mat-form-field class="item">
+                <input #city matInput placeholder="City" formControlName="username" required>
+              </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="item">
+                <input #state matInput placeholder="State" formControlName="username" required>
+              </mat-form-field>
+              <mat-form-field class="item">
+                <input #zipcode matInput placeholder="ZipCode" formControlName="username" required>
+              </mat-form-field>
+          </div>
+          <div class="submit-button">
+            <button mat-raised-button color="primary" (click)="SignUp(username.value,password.value,fname.value,mname.value,lname.value,eaddress.value,phonenumber.value,ssn.value,aline1.value,aline2.value,city.value,state.value,zipcode.value)">Submit</button>
+          <!--  <button (click)="SignUp(username.value)">Add</button>-->
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>

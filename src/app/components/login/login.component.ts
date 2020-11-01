@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { UserAuthService } from '../../_services/user.auth.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthenticationService } from '../../_services/authentication.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -10,45 +10,34 @@ import { UserAuthService } from '../../_services/user.auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  myForm: FormGroup;
-error = false;
-errorMessage = '';
-  form: FormGroup;
-  public loginInvalid: boolean;
-  private formSubmitAttempt: boolean;
-  private returnUrl: string;
-  email: string;
-  password: string;
+  user:User;
+  loginForm:FormGroup;
 
   constructor(
-    public userauthService: UserAuthService,
-    private fb: FormBuilder,
+    public authenticationService: AuthenticationService,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router  
-  ) { }
-
-  ngOnInit(): void {  
+  ) {
+    this.loginForm = this.formBuilder.group({
+      'username': ['', [Validators.required]],
+      'password': ['', [Validators.required]]
+    });
   }
-  
-  async onSubmit(value: string,value1: string) {
-    // alert(value);
-    // alert(value1);
-    this.loginInvalid = false;
-    this.formSubmitAttempt = false;
-    //if (this.form.valid) {
-      try {
-        this.userauthService.login(value, value1);
-      } catch (err) {
-        this.loginInvalid = true;
-        alert("invalid login")
+
+  ngOnInit(): void { 
+     
+  }
+
+  login():void {
+    this.authenticationService.login(this.loginForm.value).subscribe(
+      res => {
+        this.router.navigateByUrl('/home');
+      },
+      error => {
+        alert("Username password combination does not exsist")
       }
-    
+    );
   }
-
-  isEmail(control: FormControl): {[s: string]: boolean} {
-    if (!control.value.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
-    return {noEmail: true};
-    }
-    }
  
 }

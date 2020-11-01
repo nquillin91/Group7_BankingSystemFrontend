@@ -1,41 +1,79 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
+import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { StorageService } from 'ngx-webstorage-service';
+import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../models/user';
+import { RegistrationForm } from '../models/registration-form';
+import { environment } from  '../../environments/environment';
 
-@Injectable({ providedIn: 'root' })
+const STORAGE_KEY = 'current-user';
+
+export class JwtResponse{
+    constructor(
+        public jwtToken:string,) {}
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+@Injectable()
 export class AuthenticationService {
-    private currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
 
-    constructor(private http: HttpClient) {
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
+    endpoint = environment.baseUrl;
+
+    constructor(private http:HttpClient) {
     }
 
-    public get currentUserValue(): User {
-        return this.currentUserSubject.value;
+    login(user:User):Observable<any> {
+
+        return this.http.post(this.endpoint + "/login", user)
+            .pipe(
+                map((res: JwtResponse) => {
+                    sessionStorage.setItem('username', user.username);
+                    let tokenStr = 'Bearer ' + res.jwtToken;
+                    sessionStorage.setItem('token', tokenStr);
+
+                    return res;
+                }),
+                catchError(error => {
+                    /* Provide a default fallback value ([]) to the subscribers,
+                     despite the fact that the original Observable did error out.
+                     So the error handling callback in subscribe() is not invoked anymore.
+                     */
+                    //return of([]);
+                    /* --------------- */
+
+                    /* Rethrow the error. */
+                    return throwError(error);
+                }));
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`{config.apiUrl}/users/authenticate`, { username, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
+    getLoggedInUser() {
+        let user = sessionStorage.getItem('username');
+        return user;
+    }
 
-                return user;
-            }));
+    isUserLoggedIn() {
+        let user = sessionStorage.getItem('username');
+        return !(user === null);
     }
 
     logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
+        sessionStorage.removeItem('username');
+    }
+
+    signup(registrationForm : RegistrationForm):Observable<any> {
+        
+        return this.http.post(this.endpoint + "/sign-up", registrationForm)
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError(error => {
+                    //return of(error);
+                    return throwError(error);
+                })
+            );
     }
 }

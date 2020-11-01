@@ -1,4 +1,4 @@
-export class UserProfile {
+export class RegistrationForm {
     username: string;
     emailAddress: string;
     firstName: string;
@@ -11,7 +11,7 @@ export class UserProfile {
     addressLine2: string;
     city: string;
     state: string;
-    zipCode: string;
+   
 
     constructor(username: string = 'testUser',
         emailAddress: string = 'testUser@test.com',
