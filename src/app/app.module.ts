@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoanAppComponent } from  './components/loan-app/loan-app.component';
 import { TransferFundsComponent } from './components/transfer-funds/transfer-funds.component';
 import {UserProfileComponent} from '../app/components/user-profile/user-profile.component'
 import {FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -58,6 +59,7 @@ library.add(faHeart, faMugHot,
     RegisterComponent,
     LoginComponent,
     HomeComponent,
+    LoanAppComponent,
     UserProfileComponent,
     TransferFundsComponent
   ],

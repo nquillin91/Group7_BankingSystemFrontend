@@ -42,6 +42,10 @@ export class TransferFundsComponent implements OnInit {
     this.transferFunds=this.transferFundsForms.value
 
   }
+
+  onLogout(){
+    
+  }
 }
 
 // @Component({
