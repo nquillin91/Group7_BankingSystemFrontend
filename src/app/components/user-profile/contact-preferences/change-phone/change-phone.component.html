@@ -1,0 +1,34 @@
+<div class="component-wrapper">
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>
+                <span>Change Your Phone Number</span>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form (submit)="changePhoneNumber()">
+                <div fxLayout="row" fxLayoutAlign="center">
+                    <mat-form-field >
+                        <input #textboxp matInput name="currentPhoneNumber" disabled type="text" [(ngModel)]="currentPhoneNumber">
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="center">
+                    <mat-form-field >
+                        <input #textboxp matInput name="newPhoneNumber" placeholder="New Phone Number" required type="text" [(ngModel)]="newPhoneNumber">
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div>
+                        <button type="button" mat-stroked-button color="accent" (click)="back()">Back</button>
+                    </div>
+
+                    <div class="submit-button">
+                          <button mat-raised-button color="primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

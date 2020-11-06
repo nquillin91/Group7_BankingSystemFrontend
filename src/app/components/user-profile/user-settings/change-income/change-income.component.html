@@ -1,0 +1,28 @@
+<div class="component-wrapper">
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>
+                <span>Update Your Provided Income</span>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form (submit)="changeIncome()">
+                <div fxLayout="row" fxLayoutAlign="center">
+                    <mat-form-field >
+                        <input #textboxp matInput name="providedIncome" placeholder="Provided Income" required type="text" [(ngModel)]="providedIncome">
+                    </mat-form-field>
+                </div>
+                
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div>
+                        <button type="button" mat-stroked-button color="accent" (click)="back()">Back</button>
+                    </div>
+
+                    <div class="submit-button">
+                          <button mat-raised-button color="primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

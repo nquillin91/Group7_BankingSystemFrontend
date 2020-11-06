@@ -2,6 +2,8 @@ $blue: #339499;
 $green: #14AD80;
 $blue-hov: #236F6F;
 $green-hov: #0E725A;
+$turq: #3c8bb5;
+$turq-hov: #327599;
 
 .component-wrapper {
 	width: 100%;
@@ -27,11 +29,7 @@ $green-hov: #0E725A;
   padding: 1em 0;
 }
 
-img {
-	margin-bottom: 25px;
-}
-
-button {
+.nav-btn {
   border-radius: 50px;
   border: medium none;
   padding: 1.2em 1.3em;
@@ -64,5 +62,12 @@ button {
   background-color: $blue;
   &:hover {
     background-color: $blue-hov;
+  }
+}
+
+.btn-color-tertiary {
+  background-color: $turq;
+  &:hover {
+    background-color: $turq-hov;
   }
 }

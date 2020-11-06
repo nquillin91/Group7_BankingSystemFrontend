@@ -9,6 +9,14 @@ import { LoanAppComponent } from  './components/loan-app/loan-app.component';
 import { TransferFundsComponent } from './components/transfer-funds/transfer-funds.component';
 import { AccountComponent } from './components/account/account.component';
 import { UserProfileComponent } from '../app/components/user-profile/user-profile.component'
+import { ContactPreferencesComponent } from '../app/components/user-profile/contact-preferences/contact-preferences.component'
+import { ChangeAddressComponent } from '../app/components/user-profile/contact-preferences/change-address/change-address.component'
+import { ChangeEmailComponent } from '../app/components/user-profile/contact-preferences/change-email/change-email.component'
+import { ChangePhoneComponent } from '../app/components/user-profile/contact-preferences/change-phone/change-phone.component'
+import { UserSettingsComponent } from '../app/components/user-profile/user-settings/user-settings.component'
+import { ChangeIncomeComponent } from '../app/components/user-profile/user-settings/change-income/change-income.component'
+import { ChangePasswordComponent } from '../app/components/user-profile/user-settings/change-password/change-password.component'
+import { ChangeUsernameComponent } from '../app/components/user-profile/user-settings/change-username/change-username.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
@@ -62,6 +70,14 @@ library.add(faHeart, faMugHot,
     HomeComponent,
     LoanAppComponent,
     UserProfileComponent,
+    ContactPreferencesComponent,
+    ChangeAddressComponent,
+    ChangeEmailComponent,
+    ChangePhoneComponent,
+    UserSettingsComponent,
+    ChangeIncomeComponent,
+    ChangePasswordComponent,
+    ChangeUsernameComponent,
     TransferFundsComponent,
     AccountComponent
   ],

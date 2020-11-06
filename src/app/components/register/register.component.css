@@ -1,0 +1,57 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  background: #e2e2e2;
+}
+
+.app-header {
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+.login-wrapper {
+  height: 100%;
+}
+
+.form {
+    width: 100%;
+}
+
+::ng-deep .mat-card-header-text {
+  width: 100%;
+}
+
+.card-title {
+  display: flex;
+  justify-content: center;
+  padding-top: 4%;
+}
+
+.card {
+    width: 30%;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.alert-msg {
+    color: #ff0000;
+    font-size: 95%;
+}

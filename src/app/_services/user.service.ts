@@ -24,8 +24,28 @@ export class UserService {
     return this.http.get<UserProfile>(this.endpoint + '/users/profile');
   }
 
-  update(user: User) {
-      return this.http.put(`/users/user`, user);
+  changeAddress(newAddress: string) {
+    return this.http.put(`/users/user/income`, newAddress);
+  }
+
+  changeEmailAddress(newEmailAddress: string) {
+    return this.http.put(`/users/user/income`, newEmailAddress);
+  }
+
+  changePhoneNumber(newPhoneNumber: string) {
+    return this.http.put(`/users/user/phoneNumber`, newPhoneNumber);
+  }
+
+  changeIncome(newProvidedIncome: number) {
+    return this.http.put(`/users/user/providedIncome`, newProvidedIncome);
+  }
+
+  changeUsername(username: string) {
+    return this.http.put(`/users/user/username`, username);
+  }
+
+  changePassword(existingPassword: string, newPassword: string) {
+    return this.http.put(`/users/user/password`, newPassword);
   }
 
   delete(id: number) {

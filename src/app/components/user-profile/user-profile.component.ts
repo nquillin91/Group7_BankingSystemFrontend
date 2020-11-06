@@ -6,7 +6,7 @@ import { UserProfile } from '../../models/userprofile';
 import { UserService } from '../../_services/user.service';
 
 @Component({
-    selector: 'app-userprofile',
+    selector: 'app-user-profile',
     styleUrls: ['user-profile.component.scss'],
     templateUrl: 'user-profile.component.html'
 })
@@ -18,30 +18,36 @@ export class UserProfileComponent implements OnInit {
     existingPassword: string;
     newPassword: string;
 
-
     constructor(private authenticationService: AuthenticationService, private userService: UserService, private router: Router) {
         this.userProfile = new UserProfile();
         this.birthDate = new FormControl(new Date(this.userProfile.birthDate));
     }
 
     ngOnInit() {
-        try {
-            this.userService.getUserProfile().subscribe((data: UserProfile) => {
-                if (data) {
+        if (sessionStorage.getItem('userProfile') === null) {
+            try {    
+                this.userService.getUserProfile().subscribe((data: UserProfile) => {
                     this.userProfile = data;
-                } else {
-                    this.userProfile = new UserProfile();
-                }
-
-                this.birthDate = new FormControl(new Date(this.userProfile.birthDate.replace(/-/g, '\/').replace(/T.+/, '')));
-            },
-            error => console.log(error));
-        } catch {
-
+                    this.birthDate = new FormControl(new Date(this.userProfile.birthDate.replace(/-/g, '\/').replace(/T.+/, '')));
+                    sessionStorage.setItem('userProfile', JSON.stringify(this.userProfile));
+                },
+                error => console.log(error));
+            } catch {}
+        } else {
+            this.userProfile = JSON.parse(sessionStorage.getItem('userProfile'));
+            this.birthDate = new FormControl(new Date(this.userProfile.birthDate.replace(/-/g, '\/').replace(/T.+/, '')));
         }
     }
 
-    onLogout() {
+    navigateToContactPrefs():void {
+        this.router.navigate(['/contact-prefs'], { skipLocationChange: true });
+    }
+
+    navigateToUserSettings():void {
+        this.router.navigate(['/user-settings'], { skipLocationChange: true });
+    }
+
+    onLogout():void {
         this.authenticationService.logout();
     }
 }
