@@ -26,35 +26,34 @@ export class UserService {
   }
 
   getUserProfile() {
-    // update to /users/user/profile
-    return this.http.get<UserProfile>(this.endpoint + '/users/profile');
+    return this.http.get<UserProfile>(this.endpoint + '/users/user/profile');
   }
 
   changeAddress(billingAddressDto: BillingAddress) {
-    return this.http.put(`/users/user/billing-address`, billingAddressDto);
+    return this.http.put(this.endpoint + `/users/user/billing-address`, billingAddressDto);
   }
 
   changeEmailAddress(emailAddressDto: EmailAddress) {
-    return this.http.put(`/users/user/email-address`, emailAddressDto);
+    return this.http.put(this.endpoint + `/users/user/email-address`, emailAddressDto);
   }
 
   changePhoneNumber(phoneNumberDto: PhoneNumber) {
-    return this.http.put(`/users/user/phone-number`, phoneNumberDto);
+    return this.http.put(this.endpoint + `/users/user/phone-number`, phoneNumberDto);
   }
 
   changeIncome(providedIncomeDto: ProvidedIncome) {
-    return this.http.put(`/users/user/income`, providedIncomeDto);
+    return this.http.put(this.endpoint + `/users/user/income`, providedIncomeDto);
   }
 
   changeUsername(usernameDto: Username) {
-    return this.http.put(`/users/user/username`, usernameDto);
+    return this.http.put(this.endpoint + `/users/user/username`, usernameDto);
   }
 
   changePassword(passwordDto: Password) {
-    return this.http.put(`/users/user/password`, passwordDto);
+    return this.http.put(this.endpoint + `/users/user/password`, passwordDto);
   }
 
   delete(id: number) {
-      return this.http.delete(`/users/` + id);
+      return this.http.delete(this.endpoint + `/users/user`);
   }
 }
