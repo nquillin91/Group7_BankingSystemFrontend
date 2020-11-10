@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../_services/authentication.service';
 import { UserService } from '../../../_services/user.service';
-import { UserProfile } from '../../../models/userprofile';
+import { UserProfile } from '../../../models/user-profile/user-profile';
 
 @Component({
     selector: 'app-user-settings',

@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../../_services/authentication.service';
 import { UserService } from '../../../../_services/user.service';
+import { EmailAddress } from '../../../../models/user-profile/email-address';
 
 @Component({
     selector: 'app-change-email',
@@ -25,7 +26,8 @@ export class ChangeEmailComponent implements OnInit {
     }
 
     changeEmail():void {
-        this.userService.changeEmailAddress(this.newEmail).subscribe(
+        let emailAddressDto = new EmailAddress(this.newEmail);
+        this.userService.changeEmailAddress(emailAddressDto).subscribe(
             () => this.wasRequestSent = true
         );
     }

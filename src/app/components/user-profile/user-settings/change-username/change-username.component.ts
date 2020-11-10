@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../../_services/authentication.service';
 import { UserService } from '../../../../_services/user.service';
+import { Username } from '../../../../models/user-profile/username';
 
 @Component({
     selector: 'app-change-username',
@@ -25,7 +26,8 @@ export class ChangeUsernameComponent implements OnInit {
     }
 
     changeUsername():void {
-        this.userService.changeUsername(this.newUsername).subscribe(
+        let usernameDto = new Username(this.newUsername);
+        this.userService.changeUsername(usernameDto).subscribe(
             () => this.wasRequestSent = true
         );
     }

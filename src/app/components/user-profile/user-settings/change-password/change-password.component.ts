@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../../_services/authentication.service';
 import { UserService } from '../../../../_services/user.service';
+import { Password } from '../../../../models/user-profile/password';
 
 @Component({
     selector: 'app-change-password',
@@ -24,7 +25,8 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     changePassword():void {
-        this.userService.changePassword(this.existingPassword, this.newPassword).subscribe(
+        let passwordDto = new Password(this.existingPassword, this.newPassword);
+        this.userService.changePassword(passwordDto).subscribe(
             () => this.wasRequestSent = true
         );
     }

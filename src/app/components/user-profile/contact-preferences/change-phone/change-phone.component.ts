@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../../_services/authentication.service';
 import { UserService } from '../../../../_services/user.service';
+import { PhoneNumber } from '../../../../models/user-profile/phone-number';
 
 @Component({
     selector: 'app-change-phone',
@@ -25,7 +26,8 @@ export class ChangePhoneComponent implements OnInit {
     }
 
     changePhoneNumber():void {
-        this.userService.changePhoneNumber(this.newPhoneNumber).subscribe(
+        let phoneNumberDto = new PhoneNumber(this.newPhoneNumber);
+        this.userService.changePhoneNumber(phoneNumberDto).subscribe(
             () => this.wasRequestSent = true
         );
     }

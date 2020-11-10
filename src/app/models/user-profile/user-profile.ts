@@ -11,7 +11,7 @@ export class UserProfile {
     addressLine2: string;
     city: string;
     state: string;
-    zipCode: string;
+    zipcode: string;
 
     constructor(username: string = 'testUser',
         emailAddress: string = 'testUser@test.com',
@@ -25,7 +25,7 @@ export class UserProfile {
         addressLine2: string = 'Apt 1',
         city: string = 'Chicago',
         state: string = 'IL',
-        zipCode: string = '60602') {
+        zipcode: string = '60602') {
         
         // this.username = username;
         // this.emailAddress = emailAddress;

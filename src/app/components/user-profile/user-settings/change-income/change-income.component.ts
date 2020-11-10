@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../../_services/authentication.service';
 import { UserService } from '../../../../_services/user.service';
+import { ProvidedIncome } from '../../../../models/user-profile/provided-income';
 
 @Component({
     selector: 'app-change-income',
@@ -24,7 +25,8 @@ export class ChangeIncomeComponent implements OnInit {
     }
 
     changeIncome():void {
-        this.userService.changeIncome(this.providedIncome).subscribe(
+        let providedIncomeDto = new ProvidedIncome(this.providedIncome);
+        this.userService.changeIncome(providedIncomeDto).subscribe(
             () => this.wasRequestSent = true
         );
     }

@@ -2,14 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from '../models/user';
-import { UserProfile } from '../models/userprofile';
+import { UserProfile } from '../models/user-profile/user-profile';
+import { BillingAddress } from '../models/user-profile/billing-address';
+import { EmailAddress } from '../models/user-profile/email-address';
+import { PhoneNumber } from '../models/user-profile/phone-number';
+import { ProvidedIncome } from '../models/user-profile/provided-income';
+import { Password } from '../models/user-profile/password';
+import { Username } from '../models/user-profile/username';
 import { environment } from  '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   endpoint = environment.baseUrl;
   
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getAll() {
       return this.http.get<User[]>(`/users`);
@@ -24,28 +30,28 @@ export class UserService {
     return this.http.get<UserProfile>(this.endpoint + '/users/profile');
   }
 
-  changeAddress(newAddress: string) {
-    return this.http.put(`/users/user/income`, newAddress);
+  changeAddress(billingAddressDto: BillingAddress) {
+    return this.http.put(`/users/user/billing-address`, billingAddressDto);
   }
 
-  changeEmailAddress(newEmailAddress: string) {
-    return this.http.put(`/users/user/income`, newEmailAddress);
+  changeEmailAddress(emailAddressDto: EmailAddress) {
+    return this.http.put(`/users/user/email-address`, emailAddressDto);
   }
 
-  changePhoneNumber(newPhoneNumber: string) {
-    return this.http.put(`/users/user/phoneNumber`, newPhoneNumber);
+  changePhoneNumber(phoneNumberDto: PhoneNumber) {
+    return this.http.put(`/users/user/phone-number`, phoneNumberDto);
   }
 
-  changeIncome(newProvidedIncome: number) {
-    return this.http.put(`/users/user/providedIncome`, newProvidedIncome);
+  changeIncome(providedIncomeDto: ProvidedIncome) {
+    return this.http.put(`/users/user/income`, providedIncomeDto);
   }
 
-  changeUsername(username: string) {
-    return this.http.put(`/users/user/username`, username);
+  changeUsername(usernameDto: Username) {
+    return this.http.put(`/users/user/username`, usernameDto);
   }
 
-  changePassword(existingPassword: string, newPassword: string) {
-    return this.http.put(`/users/user/password`, newPassword);
+  changePassword(passwordDto: Password) {
+    return this.http.put(`/users/user/password`, passwordDto);
   }
 
   delete(id: number) {
