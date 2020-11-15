@@ -14,12 +14,17 @@ export class ChangeUsernameComponent implements OnInit {
 
     currentUsername: string;
     newUsername: string;
-    wasRequestSent: boolean;
+    
+    requestCompleted: boolean;
+    requestFailed: boolean;
+    responseMessage: string;
 
     constructor(private authenticationService: AuthenticationService, private userService: UserService,
             private route: ActivatedRoute, private router: Router) {
         this.currentUsername = JSON.parse(sessionStorage.getItem('userProfile')).username;
-        this.wasRequestSent = false;
+        
+        this.requestCompleted = false;
+        this.requestFailed = false;
     }
 
     ngOnInit() {
@@ -28,7 +33,19 @@ export class ChangeUsernameComponent implements OnInit {
     changeUsername():void {
         let usernameDto = new Username(this.newUsername);
         this.userService.changeUsername(usernameDto).subscribe(
-            () => this.wasRequestSent = true
+            x => {
+                let userProfile = JSON.parse(sessionStorage.getItem('userProfile'));
+
+                userProfile.username = this.newUsername;
+
+                sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+
+                this.requestCompleted = true;
+            },
+            resp => {
+                this.requestFailed = true;
+                this.responseMessage = resp.error.message;
+            }
         );
     }
 

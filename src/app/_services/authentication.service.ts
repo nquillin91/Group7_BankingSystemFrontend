@@ -61,6 +61,8 @@ export class AuthenticationService {
 
     logout() {
         sessionStorage.removeItem('username');
+        sessionStorage.removeItem('userProfile');
+        sessionStorage.removeItem('token');
     }
 
     signup(registrationForm : RegistrationForm):Observable<any> {

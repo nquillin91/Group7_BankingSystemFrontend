@@ -16,7 +16,10 @@ export class ChangeAddressComponent implements OnInit {
     city: string;
     state: string;
     zipcode: string;
-    wasRequestSent: boolean;
+    
+    requestCompleted: boolean;
+    requestFailed: boolean;
+    responseMessage: string;
 
     constructor(private authenticationService: AuthenticationService, private userService: UserService,
             private route: ActivatedRoute, private router: Router) {
@@ -25,7 +28,9 @@ export class ChangeAddressComponent implements OnInit {
         this.city = JSON.parse(sessionStorage.getItem('userProfile')).city;
         this.state = JSON.parse(sessionStorage.getItem('userProfile')).state;
         this.zipcode = JSON.parse(sessionStorage.getItem('userProfile')).zipcode;
-        this.wasRequestSent = false;
+        
+        this.requestCompleted = false;
+        this.requestFailed = false;
     }
 
     ngOnInit() {
@@ -33,8 +38,25 @@ export class ChangeAddressComponent implements OnInit {
 
     changeAddress():void {
         let billingAddressDto = new BillingAddress(this.addressLine1, this.addressLine2, this.city, this.state, this.zipcode);
+        
         this.userService.changeAddress(billingAddressDto).subscribe(
-            () => this.wasRequestSent = true
+            x => {
+                let userProfile = JSON.parse(sessionStorage.getItem('userProfile'));
+
+                userProfile.addressLine1 = this.addressLine1;
+                userProfile.addressLine2 = this.addressLine2;
+                userProfile.city = this.city;
+                userProfile.state = this.state;
+                userProfile.zipcode = this.zipcode;
+
+                sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+
+                this.requestCompleted = true;
+            },
+            resp => {
+                this.requestFailed = true;
+                this.responseMessage = resp.error.message;
+            }
         );
     }
 

@@ -14,11 +14,15 @@ export class ChangePasswordComponent implements OnInit {
 
     existingPassword: string;
     newPassword: string;
-    wasRequestSent: boolean;
+
+    requestCompleted: boolean;
+    requestFailed: boolean;
+    responseMessage: string;
 
     constructor(private authenticationService: AuthenticationService, private userService: UserService,
             private route: ActivatedRoute, private router: Router) {
-        this.wasRequestSent = false;
+        this.requestCompleted = false;
+        this.requestFailed = false;
     }
 
     ngOnInit() {
@@ -26,8 +30,15 @@ export class ChangePasswordComponent implements OnInit {
 
     changePassword():void {
         let passwordDto = new Password(this.existingPassword, this.newPassword);
+        
         this.userService.changePassword(passwordDto).subscribe(
-            () => this.wasRequestSent = true
+            x => {
+                this.requestCompleted = true;
+            },
+            resp => {
+                this.requestFailed = true;
+                this.responseMessage = resp.error.message;
+            }
         );
     }
 

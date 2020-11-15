@@ -14,12 +14,17 @@ export class ChangeEmailComponent implements OnInit {
 
     currentEmail: string;
     newEmail: string;
-    wasRequestSent: boolean;
+    
+    requestCompleted: boolean;
+    requestFailed: boolean;
+    responseMessage: string;
 
     constructor(private authenticationService: AuthenticationService, private userService: UserService,
             private route: ActivatedRoute, private router: Router) {
         this.currentEmail = JSON.parse(sessionStorage.getItem('userProfile')).emailAddress;
-        this.wasRequestSent = false;
+        
+        this.requestCompleted = false;
+        this.requestFailed = false;
     }
 
     ngOnInit() {
@@ -28,7 +33,19 @@ export class ChangeEmailComponent implements OnInit {
     changeEmail():void {
         let emailAddressDto = new EmailAddress(this.newEmail);
         this.userService.changeEmailAddress(emailAddressDto).subscribe(
-            () => this.wasRequestSent = true
+            x => {
+                let userProfile = JSON.parse(sessionStorage.getItem('userProfile'));
+
+                userProfile.emailAddress = this.newEmail;
+
+                sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+
+                this.requestCompleted = true;
+            },
+            resp => {
+                this.requestFailed = true;
+                this.responseMessage = resp.error.message;
+            }
         );
     }
 

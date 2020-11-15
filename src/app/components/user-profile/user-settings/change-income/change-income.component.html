@@ -6,7 +6,11 @@
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <form (submit)="changeIncome()">
+            <form *ngIf="!requestCompleted" (submit)="changeIncome()">
+                <div fxLayout="row" fxLayoutAlign="center">
+                    <mat-error *ngIf="requestFailed">{{responseMessage}}</mat-error>
+                </div>
+
                 <div fxLayout="row" fxLayoutAlign="center">
                     <mat-form-field >
                         <input #textboxp matInput name="providedIncome" placeholder="Provided Income" required type="text" [(ngModel)]="providedIncome">
@@ -23,6 +27,16 @@
                     </div>
                 </div>
             </form>
+            
+            <div *ngIf="requestCompleted" fxLayout="row" fxLayoutAlign="center">
+                <p>Your income has been updated.</p>
+            </div>
+
+            <div *ngIf="requestCompleted" fxLayout="row" fxLayoutAlign="space-between center">
+                <div>
+                    <button type="button" mat-stroked-button color="accent" (click)="back()">Back</button>
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>

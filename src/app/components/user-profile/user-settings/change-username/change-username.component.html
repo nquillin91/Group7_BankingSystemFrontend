@@ -6,7 +6,11 @@
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <form (submit)="changeUsername()">
+            <form *ngIf="!requestCompleted" (submit)="changeUsername()">
+                <div fxLayout="row" fxLayoutAlign="center">
+                    <mat-error *ngIf="requestFailed">{{responseMessage}}</mat-error>
+                </div>
+
                 <div fxLayout="row" fxLayoutAlign="center">
                     <mat-form-field >
                         <input #textboxp matInput name="currentUsername" disabled type="text" [(ngModel)]="currentUsername">
@@ -29,6 +33,16 @@
                     </div>
                 </div>
             </form>
+            
+            <div *ngIf="requestCompleted" fxLayout="row" fxLayoutAlign="center">
+                <p>Your username has been updated.</p>
+            </div>
+            
+            <div *ngIf="requestCompleted" fxLayout="row" fxLayoutAlign="space-between center">
+                <div>
+                    <button type="button" mat-stroked-button color="accent" (click)="back()">Back</button>
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>

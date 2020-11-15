@@ -14,12 +14,17 @@ export class ChangePhoneComponent implements OnInit {
 
     currentPhoneNumber: string;
     newPhoneNumber: string;
-    wasRequestSent: boolean;
+    
+    requestCompleted: boolean;
+    requestFailed: boolean;
+    responseMessage: string;
 
     constructor(private authenticationService: AuthenticationService, private userService: UserService,
             private route: ActivatedRoute, private router: Router) {
         this.currentPhoneNumber = JSON.parse(sessionStorage.getItem('userProfile')).phoneNumber;
-        this.wasRequestSent = false;
+        
+        this.requestCompleted = false;
+        this.requestFailed = false;
     }
 
     ngOnInit() {
@@ -28,7 +33,19 @@ export class ChangePhoneComponent implements OnInit {
     changePhoneNumber():void {
         let phoneNumberDto = new PhoneNumber(this.newPhoneNumber);
         this.userService.changePhoneNumber(phoneNumberDto).subscribe(
-            () => this.wasRequestSent = true
+            x => {
+                let userProfile = JSON.parse(sessionStorage.getItem('userProfile'));
+
+                userProfile.phoneNumber = this.newPhoneNumber;
+
+                sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+
+                this.requestCompleted = true;
+            },
+            resp => {
+                this.requestFailed = true;
+                this.responseMessage = resp.error.message;
+            }
         );
     }
 

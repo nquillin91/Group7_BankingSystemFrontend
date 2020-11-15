@@ -13,12 +13,17 @@ import { ProvidedIncome } from '../../../../models/user-profile/provided-income'
 export class ChangeIncomeComponent implements OnInit {
 
     providedIncome: number;
-    wasRequestSent: boolean;
+    
+    requestCompleted: boolean;
+    requestFailed: boolean;
+    responseMessage: string;
 
     constructor(private authenticationService: AuthenticationService, private userService: UserService,
             private route: ActivatedRoute, private router: Router) {
         this.providedIncome = JSON.parse(sessionStorage.getItem('userProfile')).providedIncome;
-        this.wasRequestSent = false;
+        
+        this.requestCompleted = false;
+        this.requestFailed = false;
     }
 
     ngOnInit() {
@@ -27,7 +32,19 @@ export class ChangeIncomeComponent implements OnInit {
     changeIncome():void {
         let providedIncomeDto = new ProvidedIncome(this.providedIncome);
         this.userService.changeIncome(providedIncomeDto).subscribe(
-            () => this.wasRequestSent = true
+            x => {
+                let userProfile = JSON.parse(sessionStorage.getItem('userProfile'));
+
+                userProfile.providedIncome = this.providedIncome;
+
+                sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+
+                this.requestCompleted = true;
+            },
+            resp => {
+                this.requestFailed = true;
+                this.responseMessage = resp.error.message;
+            }
         );
     }
 
