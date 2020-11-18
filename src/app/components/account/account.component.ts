@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserService } from '../../_services/user.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import { DataSource } from '@angular/cdk/collections';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-account',
@@ -8,13 +13,20 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./account.component.css']
 })
 
-export class AccountComponent {
-  dataSource: MatTableDataSource<Account> = new MatTableDataSource<Account>()
-
-  get AccountDataSource(): MatTableDataSource<Account> {
-    return this.dataSource;
-  }
-
+export class AccountComponent implements OnInit {
+  dataSource = new UserDataSource(this.userService);
   displayedColumns: string[] = ['accountnumber', 'accounttype', 'balance'];
+  constructor(private userService: UserService) { }
 
+  ngOnInit() {
+  }
+}
+export class UserDataSource extends DataSource<any> {
+  constructor(private userService: UserService) {
+    super();
+  }
+  connect(): Observable<User[]> {
+    return this.userService.getUser();
+  }
+  disconnect() { }
 }

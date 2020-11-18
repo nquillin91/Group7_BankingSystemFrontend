@@ -19,6 +19,10 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './_services/user.service';
 
 
 @NgModule({
@@ -42,9 +46,14 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
     MatDatepickerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    MatTableExporterModule,
+    MatButtonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     AngularFireAuthModule
   ],
-  providers: [UserAuthService, MatDatepickerModule],
+  providers: [UserAuthService, MatDatepickerModule, UserService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
