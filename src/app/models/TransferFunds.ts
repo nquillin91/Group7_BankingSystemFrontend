@@ -1,17 +1,17 @@
-// import { Accounts } from '../models/Accounts';
+import { Accounts } from '../models/Accounts';
 export class TransferFunds {
     senderName :string;
-    accountType : number;
+    accountType : string;
     senderAccountNumber :number;
-    accountBalance : any;
+    accountBalance : number;
     receiverName : string;
     receiverAccountNumber : number;
-    transferAmount :  any;
+    transferAmount :  number;
     date : Date;
     remarks : string;
     Status:number;
 
-    
 
 
-}
+
+} 
