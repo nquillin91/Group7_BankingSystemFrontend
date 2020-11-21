@@ -19,9 +19,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 export class AccountComponent implements OnInit {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   //  dataSource = new UserDataSource(this.userService);
 =======
   //userService: UserService = new UserService();
+  dataSource = this.transferFundsService;
+>>>>>>> Stashed changes
+=======
   dataSource = this.transferFundsService;
 >>>>>>> Stashed changes
   displayedColumns: string[] = ['accountnumber', 'accounttype', 'balance'];
@@ -58,6 +62,7 @@ export class AccountComponent implements OnInit {
 
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 
 =======
@@ -70,5 +75,9 @@ export class AccountComponent implements OnInit {
   //}
   //disconnect() { }
 //}
+>>>>>>> Stashed changes
+=======
+
+
 >>>>>>> Stashed changes
 

@@ -70,8 +70,13 @@ const materialModules = [
   MatDatepickerModule,
   MatTooltipModule,
   MatNativeDateModule,
+<<<<<<< Updated upstream
   MatDialogModule,
   MatTableExporterModule
+=======
+  MatTableExporterModule,
+  MatDialogModule
+>>>>>>> Stashed changes
 ];
 
 @NgModule({
