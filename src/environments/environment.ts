@@ -4,17 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: "https://group7-banking-system-backend.herokuapp.com",
-  firebaseConfig: {
-    apiKey: "AIzaSyAsYBbWCrbJTaO4ze0dt-RIY2EV7uQQNEs",
-    authDomain: "frontendbankingsystem.firebaseapp.com",
-    databaseURL: "https://frontendbankingsystem.firebaseio.com",
-    projectId: "frontendbankingsystem",
-    storageBucket: "frontendbankingsystem.appspot.com",
-    messagingSenderId: "696784028044",
-    appId: "1:696784028044:web:4711d6e06b9567563356a9",
-    measurementId: "G-TJSC3KW9M6"
-  }
+  baseUrl: "http://localhost:8080",
+
 
 };
 
