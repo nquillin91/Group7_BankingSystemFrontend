@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl} from '@angular/forms';
+// import { AngularFirestore } from '@angular/fire/firestore/firestore';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,14 +21,18 @@ export class LoanAppComponent implements OnInit {
     eSignature : new FormControl()
   });
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
+
+    // const loanAppsRef = this.af.collection<any>(`loans`, ref => ref.where('userId', '==',
+    //                           JSON.parse(sessionStorage.getItem('cur-user'))));
   }
 
   onSubmit(){
     const formValue = this.loanAppForm.value;
     alert("Application submitted Successfully!");
+    this.route.navigate(['user-profile']);
   }
 
 }

@@ -10,6 +10,6 @@ export class FireStoreService {
   private loanDoc: AngularFirestoreDocument<LoanDoc>;
 
   constructor(private af: AngularFirestore) { 
-    this.loanDoc = af.collection<LoanDoc>('loans');
+    this.af.collection<LoanDoc>('loans');
   }
 }
