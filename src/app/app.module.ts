@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoanAppComponent } from  './components/loan-app/loan-app.component';
+import { LoanAppComponent } from './components/loan-app/loan-app.component';
 import { TransferFundsComponent } from './components/transfer-funds/transfer-funds.component';
 import { AccountComponent } from './components/account/account.component';
 import { UserProfileComponent } from '../app/components/user-profile/user-profile.component'
@@ -27,14 +27,17 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatButtonModule } from '@angular/material/button';
+import { UserService } from './_services/user.service';
+import { MatTableExporterModule } from 'mat-table-exporter';
 //import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
 
 // HTTP Auth Based Imports
 import {
-    HttpClient,
-    HttpClientModule,
-    HTTP_INTERCEPTORS
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { AuthenticationInterceptor } from './_services/authentication.interceptor.service'
 import { CookieService } from 'ngx-cookie-service';
@@ -44,24 +47,25 @@ import { AuthenticationService } from './_services/authentication.service';
 // Font awesome imports
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faMugHot, faHeart,
-    faTh, faThList,
-    faSignInAlt, faUserPlus,
-    faPlaneDeparture, faMapMarked,
-    faSearch, faWindowClose, faPen,
-    faHiking, faCalendarAlt, faArchway, faComments,
-    faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave,
-    faUpload
+import {
+  faMugHot, faHeart,
+  faTh, faThList,
+  faSignInAlt, faUserPlus,
+  faPlaneDeparture, faMapMarked,
+  faSearch, faWindowClose, faPen,
+  faHiking, faCalendarAlt, faArchway, faComments,
+  faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave,
+  faUpload
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faHeart, faMugHot,
-    faTh, faThList,
-    faSignInAlt, faUserPlus,
-    faPlaneDeparture, faMapMarked,
-    faSearch, faWindowClose, faPen,
-    faHiking, faCalendarAlt, faArchway, faComments,
-    faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave,
-    faUpload
+  faTh, faThList,
+  faSignInAlt, faUserPlus,
+  faPlaneDeparture, faMapMarked,
+  faSearch, faWindowClose, faPen,
+  faHiking, faCalendarAlt, faArchway, faComments,
+  faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave,
+  faUpload
 );
 
 @NgModule({
@@ -94,17 +98,22 @@ library.add(faHeart, faMugHot,
     FormsModule,
     FlexLayoutModule,
     MatNativeDateModule,
-    MatDatepickerModule
-    
+    MatDatepickerModule,
+    AngularFireAuthModule,
+    MatButtonModule,
+    HttpClientModule,
+    AngularFireAuthModule,
+    MatTableExporterModule,
+    BrowserModule
   ],
- // entryComponents: [DialogBodyComponent],
+  // entryComponents: [DialogBodyComponent],
 
   providers: [
     MatDatepickerModule,
     CookieService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
-],
-   
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+  ],
+
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

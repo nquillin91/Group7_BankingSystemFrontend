@@ -8,6 +8,9 @@ import { DataSource } from '@angular/cdk/collections';
 import { User } from '../../models/user';
 import { TransferFundsService } from '../../_services/transferFunds.service';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -15,7 +18,12 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class AccountComponent implements OnInit {
+<<<<<<< Updated upstream
   //  dataSource = new UserDataSource(this.userService);
+=======
+  //userService: UserService = new UserService();
+  dataSource = this.transferFundsService;
+>>>>>>> Stashed changes
   displayedColumns: string[] = ['accountnumber', 'accounttype', 'balance'];
   accType: String;
   //constructor(private userService: UserService) { }
@@ -49,6 +57,18 @@ export class AccountComponent implements OnInit {
   }
 
 }
+<<<<<<< Updated upstream
 
 
+=======
+//export class UserDataSource extends DataSource<any> {
+  //constructor(private userService: UserService) {
+  //  super();
+  //}
+  //connect(): Observable<User[]> {
+    //return this.userService.getUser();
+  //}
+  //disconnect() { }
+//}
+>>>>>>> Stashed changes
 
