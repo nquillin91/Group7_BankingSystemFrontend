@@ -78,49 +78,49 @@ export class TransferFundsComponent implements OnInit {
 	}
 
 
-	getAccountDetails(accountType) {
+// // 	getAccountDetails(accountType) {
 
-		this.accType = accountType;
+// // 		this.accType = accountType;
 
-		this.transferFundsService.getAccountDetails().subscribe(
-			res => {
-				for (let i = 0; i < res.length; i++) {
-					if ((res[i].accountType) == this.accType) {
+// // 		this.transferFundsService.getAccountDetails().subscribe(
+// // 			res => {
+// // 				for (let i = 0; i < res.length; i++) {
+// // 					if ((res[i].accountType) == this.accType) {
 
 
-						this.setValues(res, i);
-					}
-				}
+// // 						this.setValues(res, i);
+// // 					}
+// // 				}
 
-			},
-			error => {
-				alert(error.error.message)
+// // 			},
+// // 			error => {
+// // 				alert(error.error.message)
 
-			}
-		);
-  }
+// // 			}
+// // 		);
+// //   }
   
-	onSubmit() {
-		this.transferFunds = this.transferFundsForms.getRawValue();
+// // 	onSubmit() {
+// // 		this.transferFunds = this.transferFundsForms.getRawValue();
 
 
-		this.transferFundsService.getTransactionDetails(this.transferFunds).subscribe(
-			res => {
+// // 		this.transferFundsService.getTransactionDetails(this.transferFunds).subscribe(
+// // 			res => {
 
-				alert("transaction done successfully");
-				this.router.navigateByUrl('/accounts');
-			},
-			error => {
-				if ((error["error"].text) == "TransactionSuccessfull") {
+// // 				alert("transaction done successfully");
+// // 				this.router.navigateByUrl('/accounts');
+// // 			},
+// // 			error => {
+// // 				if ((error["error"].text) == "TransactionSuccessfull") {
 
-					alert(error["error"].text);
-					this.router.navigateByUrl('/account');
-				} else
-					alert(error["error"].message);
+// // 					alert(error["error"].text);
+// // 					this.router.navigateByUrl('/account');
+// // 				} else
+// // 					alert(error["error"].message);
 
-			}
-		);
-	}
+// // 			}
+// // 		);
+// 	}
 	setValues(res, i) {
 		this.transferFundsForms.controls['accountBalance'].setValue(res[i].balance);
 		this.transferFundsForms.controls['senderAccountNumber'].setValue(res[i].id);

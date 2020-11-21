@@ -4,10 +4,22 @@
 
 export const environment = {
   production: false,
+
   baseUrl: "http://localhost:8080",
 
+  firebaseConfig: {
+    apiKey: "AIzaSyAmyv6CeZ71YjO3CcFuYygyyomZHb0TFn4",
+    authDomain: "ohmmj-1bbe5.firebaseapp.com",
+    databaseURL: "https://ohmmj-1bbe5.firebaseio.com",
+    projectId: "ohmmj-1bbe5",
+    storageBucket: "ohmmj-1bbe5.appspot.com",
+    messagingSenderId: "749754861208",
+    appId: "1:749754861208:web:7bbea8aedbbd856a5cf2ed",
+    measurementId: "G-1G7ZXKBLYR"
+    }
 
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
