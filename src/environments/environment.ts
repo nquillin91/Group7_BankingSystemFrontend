@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  baseUrl: "https://group7-banking-system-backend.herokuapp.com",
+
+  baseUrl: "http://localhost:8080",
+
   firebaseConfig: {
     apiKey: "AIzaSyAmyv6CeZ71YjO3CcFuYygyyomZHb0TFn4",
     authDomain: "ohmmj-1bbe5.firebaseapp.com",
