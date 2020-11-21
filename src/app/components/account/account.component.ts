@@ -6,7 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { DataSource } from '@angular/cdk/collections';
 import { User } from '../../models/user';
-import {TransferFundsService} from '../../_services/transferFunds.service';
+import { TransferFundsService } from '../../_services/transferFunds.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -14,46 +15,48 @@ import {TransferFundsService} from '../../_services/transferFunds.service';
 })
 
 export class AccountComponent implements OnInit {
- // dataSource = new UserDataSource(this.userService);
+  userService: UserService = new UserService();
+  dataSource = new UserDataSource(this.userService);
   displayedColumns: string[] = ['accountnumber', 'accounttype', 'balance'];
   accType: String;
   //constructor(private userService: UserService) { }
-  constructor(private transferFundsService: TransferFundsService ) {
+  constructor(private transferFundsService: TransferFundsService) {
     // ngOnInit() {
     // }
-  
-}
-ngOnInit(): void {
- 
+
+  }
+
+  ngOnInit(): void {
+
 
     //this.accType = accountType;
-  
+
     this.transferFundsService.getAccountDetails().subscribe(
       res => {
         for (let i = 0; i < res.length; i++) {
           if ((res[i].accountType) == this.accType) {
-  
-  
-          //	this.setValues(res, i);
+
+
+            //	this.setValues(res, i);
           }
         }
-  
+
       },
       error => {
         alert(error.error.message)
-  
+
       }
     );
   }
-  
+
 }
-// export class UserDataSource extends DataSource<any> {
-//   constructor(private userService: UserService) {
-//     super();
-//   }
-  // connect(): Observable<User[]> {
-  //   return this.userService.getUser();
-  // }
- //disconnect() { }
-//}
+export class UserDataSource extends DataSource<any> {
+  constructor(private userService: UserService) {
+    super();
+  }
+  connect(): Observable<User[]> {
+    //return this.userService.getUser();
+  }
+  disconnect() { }
+}
 
