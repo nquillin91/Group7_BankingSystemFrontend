@@ -1,4 +1,4 @@
-import { Accounts } from '../models/Accounts';
+// import { Accounts } from '../models/Accounts';
 export class TransferFunds {
     senderName :string;
     accountType : number;
