@@ -6,17 +6,18 @@ export const environment = {
   production: false,
   baseUrl: "https://group7-banking-system-backend.herokuapp.com",
   firebaseConfig: {
-    apiKey: "AIzaSyAsYBbWCrbJTaO4ze0dt-RIY2EV7uQQNEs",
-    authDomain: "frontendbankingsystem.firebaseapp.com",
-    databaseURL: "https://frontendbankingsystem.firebaseio.com",
-    projectId: "frontendbankingsystem",
-    storageBucket: "frontendbankingsystem.appspot.com",
-    messagingSenderId: "696784028044",
-    appId: "1:696784028044:web:4711d6e06b9567563356a9",
-    measurementId: "G-TJSC3KW9M6"
-  }
+    apiKey: "AIzaSyAmyv6CeZ71YjO3CcFuYygyyomZHb0TFn4",
+    authDomain: "ohmmj-1bbe5.firebaseapp.com",
+    databaseURL: "https://ohmmj-1bbe5.firebaseio.com",
+    projectId: "ohmmj-1bbe5",
+    storageBucket: "ohmmj-1bbe5.appspot.com",
+    messagingSenderId: "749754861208",
+    appId: "1:749754861208:web:7bbea8aedbbd856a5cf2ed",
+    measurementId: "G-1G7ZXKBLYR"
+    }
 
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
