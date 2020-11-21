@@ -3,48 +3,51 @@ import { HttpClient } from '@angular/common/http';
 
 // import { Accounts } from '../models/Accounts';
 import { TransferFunds } from '../models/TransferFunds';
-import { environment } from  '../../environments/environment';
+import { environment } from '../../environments/environment';
 import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 @Injectable()
 export class TransferFundsService {
+  getAccountDetails() {
+    throw new Error('Method not implemented.');
+  }
   endpoint = environment.baseUrl;
-  transferFunds:TransferFunds
+  transferFunds: TransferFunds
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    
-//   getAccountDetails():Observable<any> {
-   
-    //  return  this.http.get<Accounts[]>(this.endpoint + "/accDetails/")
-    //   .pipe(
-    //       map(res => {
-    //           return res;
-    //       }),
-    //       catchError(error => {
-    //           return throwError(error);
-    //       })
-    //   );
+
+  getAccountDetails(): Observable<any> {
+
+    return this.http.get<Accounts[]>(this.endpoint + "/accDetails/")
+      .pipe(
+        map(res => {
+          return res;
+        }),
+        catchError(error => {
+          return throwError(error);
+        })
+      );
 
 
   }
-  
-
-//   getTransactionDetails(transferFunds):Observable<any> {
-//       return this.http.post(this.endpoint + "/transaction", transferFunds)
-//       .pipe(
-//           map(res => {
-//               return res;
-        
-//           }),
-//           catchError(error => {
-//               return throwError(error);
-//           })
-//       );
 
 
-//   }
-  
-  
+  getTransactionDetails(transferFunds): Observable<any> {
+    return this.http.post(this.endpoint + "/transaction", transferFunds)
+      .pipe(
+        map(res => {
+          return res;
+
+        }),
+        catchError(error => {
+          return throwError(error);
+        })
+      );
+
+
+  }
+
+}

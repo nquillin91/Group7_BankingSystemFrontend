@@ -15,8 +15,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class AccountComponent implements OnInit {
-  userService: UserService = new UserService();
-  dataSource = new UserDataSource(this.userService);
+  //  dataSource = new UserDataSource(this.userService);
   displayedColumns: string[] = ['accountnumber', 'accounttype', 'balance'];
   accType: String;
   //constructor(private userService: UserService) { }
@@ -50,13 +49,6 @@ export class AccountComponent implements OnInit {
   }
 
 }
-export class UserDataSource extends DataSource<any> {
-  constructor(private userService: UserService) {
-    super();
-  }
-  connect(): Observable<User[]> {
-    //return this.userService.getUser();
-  }
-  disconnect() { }
-}
+
+
 

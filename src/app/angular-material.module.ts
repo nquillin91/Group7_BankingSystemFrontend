@@ -32,54 +32,57 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 const materialModules = [
-    CdkTreeModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatProgressSpinnerModule,
-    MatPaginatorModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatButtonToggleModule,
-    MatTreeModule,
-    OverlayModule,
-    PortalModule,
-    MatBadgeModule,
-    MatGridListModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatTooltipModule,
-    MatNativeDateModule,
-    MatDialogModule
-  ];
-  
+  CdkTreeModule,
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatProgressSpinnerModule,
+  MatPaginatorModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatFormFieldModule,
+  MatButtonToggleModule,
+  MatTreeModule,
+  OverlayModule,
+  PortalModule,
+  MatBadgeModule,
+  MatGridListModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatTooltipModule,
+  MatNativeDateModule,
+  MatDialogModule,
+  MatTableExporterModule
+];
+
 @NgModule({
   imports: [
     CommonModule,
-    ...materialModules
+    ...materialModules,
+
   ],
   exports: [
     ...materialModules
   ],
 })
 
-export class AngularMaterialModule {}
+export class AngularMaterialModule { }

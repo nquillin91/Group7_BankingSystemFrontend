@@ -1,11 +1,11 @@
-import {Component,	OnInit} from '@angular/core';
-import {FormGroup,	FormControl} from '@angular/forms';
-import {TransferFunds} from '../../models/TransferFunds';
-import {TransferFundsService} from '../../_services/transferFunds.service';
-import {Router} from '@angular/router';
-import {isThisTypeNode} from 'typescript';
-import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
-import {Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { TransferFunds } from '../../models/TransferFunds';
+import { TransferFundsService } from '../../_services/transferFunds.service';
+import { Router } from '@angular/router';
+import { isThisTypeNode } from 'typescript';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Validators } from '@angular/forms';
 
 
 @Component({
@@ -53,7 +53,7 @@ export class TransferFundsComponent implements OnInit {
 		})
 
 	});
-	constructor(private transferFundsService: TransferFundsService, private router: Router /*,public dialog: MatDialog*/ ) {
+	constructor(private transferFundsService: TransferFundsService, private router: Router /*,public dialog: MatDialog*/) {
 		this.transferFunds = new TransferFunds();
 
 
@@ -78,49 +78,49 @@ export class TransferFundsComponent implements OnInit {
 	}
 
 
-// // 	getAccountDetails(accountType) {
+	getAccountDetails(accountType) {
 
-// // 		this.accType = accountType;
+		this.accType = accountType;
 
-// // 		this.transferFundsService.getAccountDetails().subscribe(
-// // 			res => {
-// // 				for (let i = 0; i < res.length; i++) {
-// // 					if ((res[i].accountType) == this.accType) {
-
-
-// // 						this.setValues(res, i);
-// // 					}
-// // 				}
-
-// // 			},
-// // 			error => {
-// // 				alert(error.error.message)
-
-// // 			}
-// // 		);
-// //   }
-  
-// // 	onSubmit() {
-// // 		this.transferFunds = this.transferFundsForms.getRawValue();
+		this.transferFundsService.getAccountDetails().subscribe(
+			res => {
+				for (let i = 0; i < res.length; i++) {
+					if ((res[i].accountType) == this.accType) {
 
 
-// // 		this.transferFundsService.getTransactionDetails(this.transferFunds).subscribe(
-// // 			res => {
+						this.setValues(res, i);
+					}
+				}
 
-// // 				alert("transaction done successfully");
-// // 				this.router.navigateByUrl('/accounts');
-// // 			},
-// // 			error => {
-// // 				if ((error["error"].text) == "TransactionSuccessfull") {
+			},
+			error => {
+				alert(error.error.message)
 
-// // 					alert(error["error"].text);
-// // 					this.router.navigateByUrl('/account');
-// // 				} else
-// // 					alert(error["error"].message);
+			}
+		);
+	}
 
-// // 			}
-// // 		);
-// 	}
+	onSubmit() {
+		this.transferFunds = this.transferFundsForms.getRawValue();
+
+
+		this.transferFundsService.getTransactionDetails(this.transferFunds).subscribe(
+			res => {
+
+				alert("transaction done successfully");
+				this.router.navigateByUrl('/accounts');
+			},
+			error => {
+				if ((error["error"].text) == "TransactionSuccessfull") {
+
+					alert(error["error"].text);
+					this.router.navigateByUrl('/account');
+				} else
+					alert(error["error"].message);
+
+			}
+		);
+	}
 	setValues(res, i) {
 		this.transferFundsForms.controls['accountBalance'].setValue(res[i].balance);
 		this.transferFundsForms.controls['senderAccountNumber'].setValue(res[i].id);
