@@ -28,6 +28,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+//import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
+
 // HTTP Auth Based Imports
 import {
     HttpClient,
@@ -92,14 +94,17 @@ library.add(faHeart, faMugHot,
     FormsModule,
     FlexLayoutModule,
     MatNativeDateModule,
-    MatDatepickerModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    MatDatepickerModule
+    
   ],
+ // entryComponents: [DialogBodyComponent],
+
   providers: [
     MatDatepickerModule,
     CookieService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}],
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
+],
+   
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

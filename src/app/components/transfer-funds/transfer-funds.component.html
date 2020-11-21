@@ -1,15 +1,4 @@
-<!-- Toolbar -->
-<!-- <mat-toolbar color="primary" class="app-header">
-  <span class="nav-tool-items">
-   <a mat-button routerLink="/login" (click)="onLogout()" routerLinkActive="active">Log out</a>
-   <a mat-button [routerLink]="'/home'"> Home </a>
-   <a mat-button [routerLink]="'/user-profile'"> User Profile </a>
-   &nbsp;
-   <a mat-button [routerLink]="'/transferFunds'"> Transfer Funds </a>
-   <a mat-button [routerLink]="'/loan'" routerLinkActive="active"> Apply for Loan </a>
-   <a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>
-  </span>
-</mat-toolbar> -->
+
 
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
@@ -25,16 +14,14 @@
         <mat-card-content>
            <mat-form-field class="example-full-width">
               <input matInput formControlName="senderName" placeholder="Sender's Name" required>
-              <mat-error *ngIf="transferFundsForms.controls.senderName.hasError('required')">
-               Please enter your name
-             </mat-error>
+             <mat-error *ngIf="senderName.errors?.pattern" class="text-danger"> Please enter your valid name</mat-error>
            </mat-form-field>
            &nbsp;
 
            <mat-form-field  class="example-full-width">
               <mat-label>Choose  account type...</mat-label>
               <mat-select  formControlName="accountType" required>
-                 <mat-option  *ngFor="let accountType of AccountTypes" [value]="accountType">{{accountType}}
+                 <mat-option  *ngFor="let accountType of AccountTypes;let i = index" [value]="i" (click)="getAccountDetails(i)">{{accountType}}
                  </mat-option>
               </mat-select>
               <mat-error *ngIf="transferFundsForms.controls.accountType.hasError('required')">
@@ -44,11 +31,12 @@
            &nbsp;
 
            <mat-form-field class="example-full-width">
-              <input matInput formControlName="senderAccountNumber" placeholder="Sender's Account Number" required>
+              <input matInput formControlName="senderAccountNumber" placeholder="Sender's Account Number" required> 
               <mat-error *ngIf="transferFundsForms.controls.senderAccountNumber.hasError('required')">
                Please enter your account number
              </mat-error>
            </mat-form-field>
+           
            <mat-form-field class="example-full-width">
               <input matInput formControlName="accountBalance" placeholder="Account Balance" required>
               <mat-error *ngIf="transferFundsForms.controls.accountBalance.hasError('required')">
@@ -67,26 +55,22 @@
 
         <mat-card-content>
            <mat-form-field class="example-full-width">
-              <input matInput formControlName="receiverName"  placeholder="Receiver's Name" required>
-              <mat-error *ngIf="transferFundsForms.controls.receiverName.hasError('required')">
-               Please enter receiver's name
-             </mat-error>
+              <input matInput formControlName="receiverName"  placeholder="Receiver's Name" required>   
+               <mat-error *ngIf="receiverName.errors?.pattern" class="text-danger"> Please enter valid receiver's name</mat-error>
+     
            </mat-form-field>
            &nbsp;
 
            <mat-form-field class="example-full-width">
               <input matInput formControlName="receiverAccountNumber"  placeholder=" Receiver's Account Number" required>
-              <mat-error *ngIf="transferFundsForms.controls.receiverAccountNumber.hasError('required')">
-               Please enter receiver's account-number
-             </mat-error>
+               <mat-error *ngIf="receiverAccountNumber.errors?.pattern" class="text-danger">Please enter valid receiver's account-number</mat-error>
            </mat-form-field>
            &nbsp;
 
            <mat-form-field class="example-full-width">
               <input matInput formControlName="transferAmount"  placeholder="Transfer Amount" required>
-              <mat-error *ngIf="transferFundsForms.controls.transferAmount.hasError('required')">
-               Please enter transfer-amount
-             </mat-error>
+              <mat-error *ngIf="transferAmount.errors?.pattern" class="text-danger"> Please enter valid transfer-amount</mat-error>
+             
            </mat-form-field>
            &nbsp;
 
@@ -113,7 +97,6 @@
 
         
         <button mat-stroked-button color="accent" [formGroup]="transferFundsForms"(click)="onSubmit()" class="btn-block">Submit</button>
-        <!-- <button mat-stroked-button color="accent" class="btn-block" (click)="openDialog()">Submit</button> -->
      </form>
   </mat-card>
 </div>
