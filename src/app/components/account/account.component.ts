@@ -10,7 +10,7 @@ import { TransferFundsService } from '../../_services/transferFunds.service';
 import { HttpClient } from '@angular/common/http';
 import { Accounts } from '../../models/Accounts';
 import { ViewChild, ElementRef } from '@angular/core';
-import * as XLSX from 'xlsx';
+//import * as XLSX from 'xlsx';
 import { analytics } from 'firebase';
 @Component({
   selector: 'app-account',
@@ -70,7 +70,7 @@ export interface accountDetails {
   symbol: string;
 }
 const accountDetails = [
-  { id: res.map(item => Object.keys(item)[0]), accountType: res.map(item => Object.keys(item)[2]), balance: res.map(item => Object.keys(item)[3]) },
+ // { id: res.map(item => Object.keys(item)[0]), accountType: res.map(item => Object.keys(item)[2]), balance: res.map(item => Object.keys(item)[3]) },
 ];
 
 
