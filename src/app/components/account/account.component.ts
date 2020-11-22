@@ -19,41 +19,27 @@ import { analytics } from 'firebase';
 })
 
 export class AccountComponent implements OnInit {
-  // userService: UserService = new UserService();
-  // dataSource = new UserDataSource(this.userService);
-  //@ViewChild('TABLE') table: ElementRef;
+
   displayedColumns: string[] = ['id', 'accountType', 'balance'];
   accountDetails = [];
-  //dataSource = accountDetails;
+
 
   accType: String;
 
-
-  //constructor(private userService: UserService) { }
   constructor(private transferFundsService: TransferFundsService) {
-    // ngOnInit() {
-    // }
+
 
   }
 
   ngOnInit(): void {
 
-
-    //this.accType = accountType;
-
     this.transferFundsService.getAccountDetails().subscribe(
       res => {
         for (let i = 0; i < res.length; i++) {
-          // this.accountDetails=res;
-          // this.dataSource = this.accountDetails;
-          ///    const result = res.map(item => Object.keys(item)[0]);
-
-          //  this.accountDetails  = [
-          //   {id: res.map(item => Object.keys(item)[0]), accountType: res.map(item => Object.keys(item)[2]) , balance: res.map(item => Object.keys(item)[3])},
-          // ];
+      
         }
         this.accountDetails = res;
-        //  res[0].accountType
+
       },
       error => {
         alert(error.error.message)
