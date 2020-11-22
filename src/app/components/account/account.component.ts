@@ -9,8 +9,8 @@ import { User } from '../../models/user';
 import { TransferFundsService } from '../../_services/transferFunds.service';
 import { HttpClient } from '@angular/common/http';
 import { Accounts } from '../../models/Accounts';
-import {ViewChild, ElementRef} from '@angular/core';
- import * as XLSX from 'xlsx';
+import { ViewChild, ElementRef } from '@angular/core';
+import * as XLSX from 'xlsx';
 import { analytics } from 'firebase';
 @Component({
   selector: 'app-account',
@@ -18,12 +18,12 @@ import { analytics } from 'firebase';
   styleUrls: ['./account.component.css']
 })
 
-export class AccountComponent implements OnInit{
+export class AccountComponent implements OnInit {
   // userService: UserService = new UserService();
   // dataSource = new UserDataSource(this.userService);
   //@ViewChild('TABLE') table: ElementRef;
   displayedColumns: string[] = ['id', 'accountType', 'balance'];
-  accountDetails=[];
+  accountDetails = [];
   //dataSource = accountDetails;
 
   accType: String;
@@ -37,7 +37,7 @@ export class AccountComponent implements OnInit{
   }
 
   ngOnInit(): void {
- 
+
 
     //this.accType = accountType;
 
@@ -46,14 +46,14 @@ export class AccountComponent implements OnInit{
         for (let i = 0; i < res.length; i++) {
           // this.accountDetails=res;
           // this.dataSource = this.accountDetails;
-      ///    const result = res.map(item => Object.keys(item)[0]);
-        
+          ///    const result = res.map(item => Object.keys(item)[0]);
+
           //  this.accountDetails  = [
           //   {id: res.map(item => Object.keys(item)[0]), accountType: res.map(item => Object.keys(item)[2]) , balance: res.map(item => Object.keys(item)[3])},
           // ];
         }
-        this.accountDetails =res;
-      //  res[0].accountType
+        this.accountDetails = res;
+        //  res[0].accountType
       },
       error => {
         alert(error.error.message)
@@ -69,10 +69,10 @@ export interface accountDetails {
   weight: number;
   symbol: string;
 }
-const accountDetails  = [
-  {id: res.map(item => Object.keys(item)[0]), accountType: res.map(item => Object.keys(item)[2]) , balance: res.map(item => Object.keys(item)[3])},
-  ];
- 
+const accountDetails = [
+  { id: res.map(item => Object.keys(item)[0]), accountType: res.map(item => Object.keys(item)[2]), balance: res.map(item => Object.keys(item)[3]) },
+];
+
 
 // export class UserDataSource extends DataSource<any> {
 //   constructor(private userService: UserService) {
@@ -83,4 +83,3 @@ const accountDetails  = [
 //   }
 //   disconnect() { }
 // }
-

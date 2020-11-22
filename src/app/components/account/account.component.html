@@ -26,25 +26,25 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>-->
-  
 
 
 
-  <div class="container-analyzer">
-    <table>
-        <thead>
-            <th>id</th>
-            <th>accountType</th>
-            <th>balance</th>
-         
-        </thead>
-        <tbody *ngFor="let accountDetail of accountDetails">
-            <tr>
-                <td>{{accountDetail.id}}</td>
-                <td>{{accountDetail.accountType}}</td>
-                <td>{{accountDetail.balance}} </td>
-           
-            </tr>
-        </tbody>
-    </table>
+
+<div class="container-analyzer">
+  <table>
+    <thead>
+      <th>AccountNumber</th>
+      <th>AccountType</th>
+      <th>Balance</th>
+
+    </thead>
+    <tbody *ngFor="let accountDetail of accountDetails">
+      <tr>
+        <td>{{accountDetail.id}}</td>
+        <td>{{accountDetail.accountType}}</td>
+        <td>{{accountDetail.balance}} </td>
+
+      </tr>
+    </tbody>
+  </table>
 </div>
