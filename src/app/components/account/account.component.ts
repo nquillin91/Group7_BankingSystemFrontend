@@ -63,15 +63,15 @@ export class AccountComponent implements OnInit {
   }
 
 }
-export interface accountDetails {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const accountDetails = [
-  { id: res.map(item => Object.keys(item)[0]), accountType: res.map(item => Object.keys(item)[2]), balance: res.map(item => Object.keys(item)[3]) },
-];
+//export interface accountDetails {
+//  name: string;
+ // position: number;
+//  weight: number;
+ // symbol: string;
+//}
+//const accountDetails = [
+  //{ id: res.map(item => Object.keys(item)[0]), accountType: res.map(item => Object.keys(item)[2]), balance: res.map(item => Object.keys(item)[3]) },
+// ];
 
 
 // export class UserDataSource extends DataSource<any> {
